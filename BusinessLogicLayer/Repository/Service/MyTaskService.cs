@@ -8,21 +8,27 @@ namespace BusinessLogicLayer.Repository.Service
 {
     public class MyTaskService : IMyTask
     {
+        #region Fields
         private readonly ApplicationDbContext context;
+        #endregion
 
+        #region CTOR
         public MyTaskService(ApplicationDbContext context)
         {
             this.context = context;
         }
+        #endregion
 
+        #region AddTask
         public async Task<int> AddTask(MyTask task)
         {
-          
                context.Add(task);
                await context.SaveChangesAsync();
                return task.Id;
         }
+        #endregion
 
+        #region GetDetails
         public async Task<MyTask> GetDetails(int id)
         {
             if (id == null || context.Task == null || id==0)
@@ -35,13 +41,17 @@ namespace BusinessLogicLayer.Repository.Service
                 .FirstOrDefaultAsync(m => m.Id == id);
             return myTask;
         }
+        #endregion
 
+        #region GetMyTask
         public async Task<IEnumerable<MyTask>> GetMyTask()
         {
             var data = await context.Task.ToListAsync();
             return data;
         }
+        #endregion
 
+        #region UpdateTask
         public async Task<bool> UpdateTask(MyTask task)
         {
             try
@@ -61,13 +71,17 @@ namespace BusinessLogicLayer.Repository.Service
                 }
             }
             return true;
-
         }
+        #endregion
+
+        #region Methods
         private bool MyTaskExists(int id)
         {
             return (context.Task?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+        #endregion
 
+        #region DeleteRecord
         public async Task<bool> DeleteRecord(int id=0)
         {
             bool status = false;
@@ -82,8 +96,7 @@ namespace BusinessLogicLayer.Repository.Service
                 }
             }
             return status;
-
-          
         }
+        #endregion
     }
 }

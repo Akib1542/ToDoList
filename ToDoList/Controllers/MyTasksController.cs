@@ -13,6 +13,7 @@ namespace ToDoList.Controllers
 {
     public class MyTasksController : Controller
     {
+        #region CTOR
         private readonly ApplicationDbContext _context;
         private readonly IMyTask mytask;
 
@@ -21,30 +22,43 @@ namespace ToDoList.Controllers
             _context = context;
             this.mytask = mytask;
         }
-    
+        #endregion
 
-        // GET: MyTasks
-        public async Task<IActionResult> Index()
+        #region GET: MyTasks
+        public async Task<IActionResult> Index(int pg=1)
         {
-            var applicationDbContext = _context.Task.Include(m => m.Status);
-            return View(await applicationDbContext.ToListAsync());
+            List<MyTask> myTasks = _context.Task.ToList();
+            const int pageSize = 3;
+            if (pg < 1)
+            {
+                pg = 1;
+            }
+            int resCount = myTasks.Count();
+            var pager = new Pager(resCount,pg,pageSize);
+            int recSkip = (pg-1)*pageSize;
+            var data = myTasks.Skip(recSkip).Take(pager.PageSize).ToList();
+            this.ViewBag.Pager = pager;
+            return View(data);
         }
+        #endregion
 
-        // GET: MyTasks/Details/5
+        #region MyTasks Details
         public async Task<IActionResult> Details(int id=0)
         {
             var data = await mytask.GetDetails(id);
             return View(data);
         }
+        #endregion
 
-        // GET: MyTasks/Create
+        #region GET:Create
         public IActionResult Create()
         {
             ViewData["StatusId"] = new SelectList(_context.Statuses, "StatusId", "StatusId");
             return View();
         }
+        #endregion
 
-        // POST: MyTasks/Create
+        #region POST:Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Description,DueDate,CategoryId,Category,StatusId")] MyTask myTask)
@@ -54,18 +68,17 @@ namespace ToDoList.Controllers
                 var data = await mytask.AddTask(myTask);
                 return RedirectToAction("Index");
             }
-          // ViewData["StatusId"] = new SelectList(_context.Statuses, "StatusId", "StatusId", myTask.StatusId);
             return View(myTask);
         }
+        #endregion
 
-        // GET: MyTasks/Edit/5
+        #region GET: Edit
         public async Task<IActionResult> Edit(int id=0)
         {
             if (id == null || _context.Task == null)
             {
                 return NotFound();
             }
-
             var myTask = await _context.Task.FindAsync(id);
             if (myTask == null)
             {
@@ -74,9 +87,9 @@ namespace ToDoList.Controllers
             ViewData["StatusId"] = new SelectList(_context.Statuses, "StatusId", "StatusId", myTask.StatusId);
             return View(myTask);
         }
+        #endregion
 
-        // POST: MyTasks/Edit/5
-   
+        #region POST:Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Description,DueDate,CategoryId,Category,StatusId")] MyTask myTask)
@@ -85,7 +98,6 @@ namespace ToDoList.Controllers
             {
                 return NotFound();
             }
-
             if (ModelState.IsValid)
             {
                 var data = await mytask.UpdateTask(myTask);
@@ -94,8 +106,9 @@ namespace ToDoList.Controllers
             ViewData["StatusId"] = new SelectList(_context.Statuses, "StatusId", "StatusId", myTask.StatusId);
             return View(myTask);
         }
+        #endregion
 
-        // GET: MyTasks/Delete/5
+        #region GET:Delete
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Task == null)
@@ -110,11 +123,11 @@ namespace ToDoList.Controllers
             {
                 return NotFound();
             }
-
             return View(myTask);
         }
+        #endregion
 
-        // POST: MyTasks/Delete/5
+        #region POST:Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -145,7 +158,7 @@ namespace ToDoList.Controllers
 
             return RedirectToAction("Index");
         }
+        #endregion
 
-      
     }
 }

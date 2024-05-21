@@ -2,14 +2,99 @@
 
 @{
     ViewData["Title"] = "Index";
+
+    Pager pager = new Pager();
+    int pageNo = 0;
+    if(ViewBag.Pager != null)
+    {
+        pager = ViewBag.Pager;
+        pageNo = pager.CurrentPage;
+    }
 }
 
-<h1>Index</h1>
+<h1>MyTask </h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-primary" asp-route-id="">Create New</a>
+
 </p>
-<table class="table">
+
+
+
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-4">
+            <div class="card mb-4">
+                <div class="card-header">
+
+                    <h4 class="my-0 font-weight-normal bg-light">
+                        <lable style="font-size:23px; color: steelblue">
+                           ID: @Html.DisplayFor(modelItem => item.Id)
+                        </lable>
+                    </h4>
+                    <br />
+
+
+
+                    <h4 class="my-0 font-weight-normal bg-light">
+                        <lable style="font-size:23px; color: steelblue">
+                       My Note: @Html.DisplayFor(modelItem => item.Description)  
+                        </lable> 
+                    </h4>
+                    <br />
+
+
+                    <h4 class="my-0 font-weight-normal bg-light">
+                        <lable style="font-size:23px; color: steelblue">
+                       CatagoryID: @Html.DisplayFor(modelItem => item.CategoryId)
+                            
+                        </lable>
+                    </h4>
+
+                    <br />
+
+
+                    <h4 class="my-0 font-weight-normal bg-light">
+                        <lable style="font-size:23px; color: steelblue">
+                            Catagory Name: @Html.DisplayFor(modelItem => item.Category)
+                            
+                        </lable>
+                    </h4>
+                    <br />
+
+                    <h4 class="my-0 font-weight-normal bg-light">
+                        <lable style="font-size:23px; color: steelblue">
+                         Date: @Html.DisplayFor(modelItem => item.DueDate)
+
+                        </lable>
+                    </h4>
+
+
+                  
+                </div>
+
+                
+                <div class="card-header">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.Id">Edit</a> 
+                            <a asp-action="Details" class="btn btn-secondary" asp-route-id="@item.Id">Details</a> 
+                            <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">Delete</a>
+
+                           @*  <label style="font-size: 20px; color:#a51313"><b>Price:@product.Price</b> </label> *@
+                        </div>
+                        @* <a asp-action="Details" asp-controller="Home" asp-route-id="@product.Id" class="btn btn-success pull-right btn-outline-info">Details</a> *@
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+@* <table class="table">
     <thead>
         <tr>
             <th>
@@ -56,4 +141,22 @@
         </tr>
 }
     </tbody>
-</table>
+</table> *@
+
+
+
+
+
+<div class="container">
+    @if(pager.TotalPages>0)
+    {
+        <ul class="pagination justify-content-end">
+            @for(var pge = pager.StartPage; pge<=pager.EndPage; pge++)
+            {
+                <li class="page-item" @(pge == pager.CurrentPage ? "active" : "")>
+                    <a class="page-link" asp-controller="MyTasks" asp-action="Index" asp-route-pg="@pge">@pge</a>
+                </li>
+            }
+        </ul>
+    }
+</div>
