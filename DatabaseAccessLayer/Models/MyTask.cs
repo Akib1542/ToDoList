@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel.DataAnnotations;
 
-namespace ToDoList.Models
+namespace DatabaseAccessLayer.Models
 {
     public class MyTask
     {

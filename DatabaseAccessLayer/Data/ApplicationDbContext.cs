@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ToDoList.Models;
+using DatabaseAccessLayer.Models;
 
-namespace ToDoList.Data
+namespace DatabaseAccessLayer.Data
 {
     public class ApplicationDbContext : DbContext
     {

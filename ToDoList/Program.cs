@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using ToDoList.Data;
+using DatabaseAccessLayer.Data;
+using BusinessLogicLayer.Repository.Interface;
+using BusinessLogicLayer.Repository.Service;
+
 
 namespace ToDoList
 {
@@ -8,6 +11,7 @@ namespace ToDoList
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddScoped<IMyTask, MyTaskService>();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
@@ -34,7 +38,7 @@ namespace ToDoList
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=MyTasks}/{action=Index}/{id?}");
 
             app.Run();
         }
