@@ -12,25 +12,22 @@
     }
 }
 
-<h1>MyTask </h1>
-
 <p>
     <a asp-action="Create" class="btn btn-primary" asp-route-id="">Create New</a>
 
 </p>
 
-
  <div class="container">
-   
 
+    <div class="box">
     <form >
         <div class="form-group form-check">
             <input type="checkbox"  class="form-check-input" id="isActiveFilter" name="isActiveFilter" value="True" />
-            <label class="form-check-label" for="isActiveFilter">Show only active tasks</label>
+            <label class="form-check-label" for="isActiveFilter">Filter only Done tasks</label>
         </div>
         <button type="submit" class="btn btn-primary">Filter</button>
     </form>
-
+    </div>
     <main role="main" class="pb-3">
         @foreach (var task in Model)
         {
@@ -39,10 +36,19 @@
                 <p><strong>Status:</strong> @(task.IsActive ? "Active" : "Inactive")</p>
             </div>
         }
-    </main>
-</div> 
+    </main> 
+  
+</div>
 
-
+<style>
+    .box {
+        border: 1px solid #ccc;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+</style>
 
 <div class="row">
     @foreach (var item in Model)
@@ -101,12 +107,8 @@
 
                         </lable>
                     </h4>
-
-
-                  
                 </div>
 
-                
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
@@ -193,8 +195,6 @@
     </div>
     </div>
 </nav>
-
-
 
 <div class="container">
     @if(pager.TotalPages>0)

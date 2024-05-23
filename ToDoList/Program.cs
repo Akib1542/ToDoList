@@ -31,15 +31,11 @@ namespace ToDoList
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
-
             app.UseAuthorization();
-
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=MyTasks}/{action=Index}/{id?}");
-
             app.Run();
         }
     }
