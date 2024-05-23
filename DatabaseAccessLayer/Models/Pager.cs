@@ -19,7 +19,6 @@ namespace DatabaseAccessLayer.Models
         {
             
         }
-
         public Pager(int totalItems, int page, int pageSize=0)
         {
             int totalPage = (int)Math.Ceiling( ((decimal)totalItems) / (decimal)pageSize);
@@ -50,9 +49,5 @@ namespace DatabaseAccessLayer.Models
             StartPage = startPage;
             EndPage = endPage;  
         }
-
-       
-
-
     }
 }

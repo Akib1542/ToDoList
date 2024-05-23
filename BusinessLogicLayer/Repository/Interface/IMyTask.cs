@@ -6,9 +6,9 @@ namespace BusinessLogicLayer.Repository.Interface
     {
         Task<IEnumerable<MyTask>> GetMyTask();
         Task<int> AddTask(MyTask task);
-
         Task<MyTask> GetDetails(int Id);
         Task<bool> DeleteRecord(int id);
         Task<bool> UpdateTask(MyTask task);
+        Task<List<MyTask>> GetCatBySearch(string search, bool filter);
     }
 }

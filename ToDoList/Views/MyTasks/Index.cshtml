@@ -20,6 +20,28 @@
 </p>
 
 
+ <div class="container">
+   
+
+    <form >
+        <div class="form-group form-check">
+            <input type="checkbox"  class="form-check-input" id="isActiveFilter" name="isActiveFilter" value="True" />
+            <label class="form-check-label" for="isActiveFilter">Show only active tasks</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Filter</button>
+    </form>
+
+    <main role="main" class="pb-3">
+        @foreach (var task in Model)
+        {
+            <div class="task-item">
+                <p>@task.Description</p>
+                <p><strong>Status:</strong> @(task.IsActive ? "Active" : "Inactive")</p>
+            </div>
+        }
+    </main>
+</div> 
+
 
 
 <div class="row">
@@ -70,6 +92,15 @@
 
                         </lable>
                     </h4>
+                    <br />
+
+
+                    <h4 class="my-0 font-weight-normal bg-light">
+                        <lable style="font-size:23px; color: steelblue">
+                            Done: @Html.DisplayFor(modelItem => item.IsActive)
+
+                        </lable>
+                    </h4>
 
 
                   
@@ -92,7 +123,6 @@
         </div>
     }
 </div>
-
 
 @* <table class="table">
     <thead>
@@ -143,7 +173,26 @@
     </tbody>
 </table> *@
 
+<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
 
+
+    <li class="nav-item dropdown">
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Separated link</a>
+        </div>
+    </li>
+    </ul>
+    <form class="d-flex">
+        <input class="form-control me-sm-2" asp-action="Index" name="search" type="search" placeholder="Search">
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    </div>
+    </div>
+</nav>
 
 
 

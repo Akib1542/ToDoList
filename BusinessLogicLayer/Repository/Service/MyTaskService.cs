@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using DatabaseAccessLayer.Data;
 using DatabaseAccessLayer.Models;
 using BusinessLogicLayer.Repository.Interface;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace BusinessLogicLayer.Repository.Service
 {
@@ -96,6 +98,24 @@ namespace BusinessLogicLayer.Repository.Service
                 }
             }
             return status;
+        }
+        #endregion
+
+        #region Search & Filter
+        public async Task<List<MyTask>> GetCatBySearch(string search, bool filter )
+        {
+            if (string.IsNullOrEmpty(search) && !filter)
+            {
+                var datas = context.Task.ToList();
+                return datas;
+            }
+            
+            var data = await context.Task.Where(x => x.Category == search || filter == x.IsActive).ToListAsync();
+            if (search == null)
+            {
+                return data;
+            }
+            return data;
         }
         #endregion
     }

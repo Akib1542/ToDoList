@@ -25,7 +25,7 @@ namespace ToDoList.Controllers
         #endregion
 
         #region GET: MyTasks
-        public async Task<IActionResult> Index(int pg=1)
+        public async Task<IActionResult> Index(bool isActiveFilter,int pg=1, string search = "")
         {
             List<MyTask> myTasks = _context.Task.ToList();
             const int pageSize = 3;
@@ -36,7 +36,9 @@ namespace ToDoList.Controllers
             int resCount = myTasks.Count();
             var pager = new Pager(resCount,pg,pageSize);
             int recSkip = (pg-1)*pageSize;
-            var data = myTasks.Skip(recSkip).Take(pager.PageSize).ToList();
+            var data = await mytask.GetCatBySearch(search, isActiveFilter);
+
+            data = data.Skip(recSkip).Take(pager.PageSize).ToList();
             this.ViewBag.Pager = pager;
             return View(data);
         }
@@ -92,7 +94,7 @@ namespace ToDoList.Controllers
         #region POST:Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Description,DueDate,CategoryId,Category,StatusId")] MyTask myTask)
+        public async Task<IActionResult> Edit(int id, MyTask myTask)
         {
             if (id != myTask.Id)
             {

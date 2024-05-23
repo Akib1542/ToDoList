@@ -38,16 +38,48 @@
                 <select asp-for="StatusId" class="form-control" asp-items="ViewBag.StatusId"></select>
                 <span asp-validation-for="StatusId" class="text-danger"></span>
             </div>
+
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Form with Checkbox</title>
+                <link rel="stylesheet" href="styles.css"> <!-- Link your CSS file -->
+            </head>
+            <body>
+                <div class="form-group">
+                    <label asp-for="IsActive" class="control-label">Mark As Done</label>
+                    <input type="checkbox" asp-for="IsActive" class="form-check-input">
+                    <span asp-validation-for="IsActive" class="text-danger"></span>
+                </div>
+            </body>
+        </html>
+
+
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
+<br />
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Light Button Example</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link your CSS file -->
+</head>
+<body>
+    <div>
+        <a asp-action="Index" class="btn btn-light">Back to List</a>
+    </div>
+</body>
+</html>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
