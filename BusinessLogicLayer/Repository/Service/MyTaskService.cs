@@ -1,10 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using DatabaseAccessLayer.Data;
 using DatabaseAccessLayer.Models;
 using BusinessLogicLayer.Repository.Interface;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace BusinessLogicLayer.Repository.Service
 {
@@ -104,18 +101,15 @@ namespace BusinessLogicLayer.Repository.Service
         #region Search & Filter
         public async Task<List<MyTask>> GetCatBySearch(string search, bool filter )
         {
-            if (string.IsNullOrEmpty(search) && !filter)
+            var datas = await context.Task.ToListAsync();
+            if(!string.IsNullOrEmpty(search))
             {
-                var datas = context.Task.ToList();
-                return datas;
+                datas = datas.Where(x=> x.Category == search).ToList();
             }
+            datas = datas.Where(x => x.IsActive == filter).ToList();
             
-            var data = await context.Task.Where(x => x.Category == search || filter == x.IsActive).ToListAsync();
-            if (search == null)
-            {
-                return data;
-            }
-            return data;
+            
+            return datas;
         }
         #endregion
     }

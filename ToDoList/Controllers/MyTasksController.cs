@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DatabaseAccessLayer.Data;
@@ -28,18 +24,19 @@ namespace ToDoList.Controllers
         public async Task<IActionResult> Index(bool isActiveFilter,int pg=1, string search = "")
         {
             List<MyTask> myTasks = _context.Task.ToList();
+           
+            var data = await mytask.GetCatBySearch(search, isActiveFilter);
             const int pageSize = 3;
             if (pg < 1)
             {
                 pg = 1;
             }
-            int resCount = myTasks.Count();
-            var pager = new Pager(resCount,pg,pageSize);
-            int recSkip = (pg-1)*pageSize;
-            var data = await mytask.GetCatBySearch(search, isActiveFilter);
-
+            int resCount = data.Count();
+            var pager = new Pager(resCount, pg, pageSize);
+            int recSkip = (pg - 1) * pageSize;
             data = data.Skip(recSkip).Take(pager.PageSize).ToList();
             this.ViewBag.Pager = pager;
+
             return View(data);
         }
         #endregion
