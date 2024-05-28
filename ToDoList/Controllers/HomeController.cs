@@ -1,17 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Diagnostics;
 using DatabaseAccessLayer.Data;
-using DatabaseAccessLayer.Models;
 
 namespace ToDoList.Controllers
 {
     public class HomeController : Controller
     {
-
+        #region CTOR
         private readonly ApplicationDbContext context;
-      
-
-
+        public HomeController()
+        {
+            
+        }
+        #endregion
     }
 }

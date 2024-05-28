@@ -166,4 +166,63 @@ body {
 
     .box-link:active {
         background-color: #cc5200; /* Even darker orange on active (clicked) */
-        t
+       
+    }
+
+body {
+    background-color: #f0f8ff; /* Example: light blue background */
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif; /* Example font */
+}
+
+
+body {
+    background-image: url('/images/background.jpg'); /* Make sure the image path is correct */
+    background-size: cover; /* Ensure the image covers the entire background */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif; /* Example font */
+}
+
+/* site.css */
+
+body {
+    background-color: #f0f8ff; /* Light blue background color */
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+header, footer {
+    background-color: #007bff; /* Example: blue background for header and footer */
+    color: #fff; /* White text color */
+    padding: 10px 20px;
+    text-align: center;
+}
+
+main {
+    padding: 20px;
+}
+
+nav a {
+    color: #007bff; /* Blue text for links */
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+    nav a:hover {
+        text-decoration: underline; /* Underline links on hover */
+    }
+
+/* Example styles for specific sections */
+.section {
+    padding: 20px;
+    margin: 20px 0;
+    background-color: #ffffff; /* White background for sections */
+    border: 1px solid #ddd; /* Light grey border */
+    border-radius: 5px; /* Rounded corners */
+}
+

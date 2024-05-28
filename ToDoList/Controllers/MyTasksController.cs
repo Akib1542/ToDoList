@@ -6,7 +6,6 @@ using DatabaseAccessLayer.Models;
 using BusinessLogicLayer.Repository.Interface;
 using Microsoft.AspNetCore.Authorization;
 using DatabaseAccessLayer.Utility;
-using BusinessLogicLayer.Repository.Service;
 
 namespace ToDoList.Controllers
 {
@@ -30,7 +29,6 @@ namespace ToDoList.Controllers
         public async Task<IActionResult> Index(bool isActiveFilter,int pg=1, string search = "")
         {
             var myTasks = await mytask.GetMyTask();
-           
             var data = await mytask.GetCatBySearch(search, isActiveFilter);
             const int pageSize = 3;
             if (pg < 1)
