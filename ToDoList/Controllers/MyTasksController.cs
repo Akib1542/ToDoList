@@ -4,9 +4,13 @@ using Microsoft.EntityFrameworkCore;
 using DatabaseAccessLayer.Data;
 using DatabaseAccessLayer.Models;
 using BusinessLogicLayer.Repository.Interface;
+using Microsoft.AspNetCore.Authorization;
+using DatabaseAccessLayer.Utility;
+using BusinessLogicLayer.Repository.Service;
 
 namespace ToDoList.Controllers
 {
+    [Authorize(Roles =SD.Role_TaskUSer)]
     public class MyTasksController : Controller
     {
         #region CTOR
@@ -23,7 +27,7 @@ namespace ToDoList.Controllers
         #region GET: MyTasks
         public async Task<IActionResult> Index(bool isActiveFilter,int pg=1, string search = "")
         {
-            List<MyTask> myTasks = _context.Task.ToList();
+            var myTasks = await mytask.GetMyTask();
            
             var data = await mytask.GetCatBySearch(search, isActiveFilter);
             const int pageSize = 3;
@@ -60,14 +64,12 @@ namespace ToDoList.Controllers
         #region POST:Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Description,DueDate,CategoryId,Category,StatusId")] MyTask myTask)
+        public async Task<IActionResult> Create( MyTask myTask)
         {
-            if (ModelState.IsValid)
-            {
-                var data = await mytask.AddTask(myTask);
-                return RedirectToAction("Index");
-            }
-            return View(myTask);
+        
+            var data = await mytask.AddTask(myTask);
+            return RedirectToAction("Index");
+
         }
         #endregion
 
@@ -97,13 +99,8 @@ namespace ToDoList.Controllers
             {
                 return NotFound();
             }
-            if (ModelState.IsValid)
-            {
-                var data = await mytask.UpdateTask(myTask);
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["StatusId"] = new SelectList(_context.Statuses, "StatusId", "StatusId", myTask.StatusId);
-            return View(myTask);
+            var data = await mytask.UpdateTask(myTask);
+            return RedirectToAction(nameof(Index));
         }
         #endregion
 

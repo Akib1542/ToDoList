@@ -2,6 +2,8 @@
 using DatabaseAccessLayer.Data;
 using DatabaseAccessLayer.Models;
 using BusinessLogicLayer.Repository.Interface;
+using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
 
 namespace BusinessLogicLayer.Repository.Service
 {
@@ -9,21 +11,26 @@ namespace BusinessLogicLayer.Repository.Service
     {
         #region Fields
         private readonly ApplicationDbContext context;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
         #endregion
 
         #region CTOR
-        public MyTaskService(ApplicationDbContext context)
+        public MyTaskService(ApplicationDbContext context, IHttpContextAccessor httpContextAccessor)
         {
             this.context = context;
+            _httpContextAccessor = httpContextAccessor;
         }
         #endregion
 
         #region AddTask
         public async Task<int> AddTask(MyTask task)
         {
-               context.Add(task);
-               await context.SaveChangesAsync();
-               return task.Id;
+              task.UserId = _httpContextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier);
+              context.Add(task);
+              await context.SaveChangesAsync();
+              return task.Id;
+          
         }
         #endregion
 
@@ -46,6 +53,7 @@ namespace BusinessLogicLayer.Repository.Service
         public async Task<IEnumerable<MyTask>> GetMyTask()
         {
             var data = await context.Task.ToListAsync();
+            data = data.Where(x=> x.UserId == _httpContextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString()).ToList();
             return data;
         }
         #endregion
@@ -53,6 +61,8 @@ namespace BusinessLogicLayer.Repository.Service
         #region UpdateTask
         public async Task<bool> UpdateTask(MyTask task)
         {
+            task.UserId = _httpContextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
             try
             {
                 context.Update(task);
@@ -102,7 +112,8 @@ namespace BusinessLogicLayer.Repository.Service
         public async Task<List<MyTask>> GetCatBySearch(string search, bool filter )
         {
             var datas = await context.Task.ToListAsync();
-            if(!string.IsNullOrEmpty(search))
+            datas = datas.Where(x => x.UserId == _httpContextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString()).ToList();
+            if (!string.IsNullOrEmpty(search))
             {
                 datas = datas.Where(x=> x.Category == search).ToList();
             }

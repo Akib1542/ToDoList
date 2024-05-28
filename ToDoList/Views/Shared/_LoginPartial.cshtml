@@ -6,12 +6,52 @@
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
-    <li class="nav-item">
-        <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
-    </li>
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Navigation Button</title>
+            <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+        </head>
+       @*  <body>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a id="manage" class="nav-link box-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+                        Hello @UserManager.GetUserName(User)!
+                    </a>
+                </li>
+            </ul>
+        </body> *@
+    </html>
     <li class="nav-item">
             <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "MyTasks", new { area = "" })">
-            <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Navigation Button</title>
+                <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+            </head>
+            <body>
+                <div class="nav-container">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a id="manage" class="nav-link box-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+                                Hello @UserManager.GetUserName(User)!
+                                <button id="logout" type="submit" class="nav-link box-link btn btn-logout text-white">Logout</button>
+                            </a>
+                        </li>
+                        <!-- Other navigation items can go here -->
+                    </ul>
+                   
+
+                </div>
+            </body>
+        </html>
+
         </form>
     </li>
 }
@@ -30,17 +70,26 @@ else
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Navigation Buttons</title>
-            <link rel="stylesheet" href="styles.css"> <!-- Link your CSS file -->
+            <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+            <!-- Link your CSS file -->
         </head>
         <body>
-            <ul class="nav">
-                <li class="nav-item">
-                    <a class="nav-link btn btn-orange" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link btn btn-orange" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
-                </li>
-            </ul>
+            <div class="row">
+                <div class="col-10">
+
+                </div>
+                <div class="col-2">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-orange" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-orange" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
         </body>
 
     </html>

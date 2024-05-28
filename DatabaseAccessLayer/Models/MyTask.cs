@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DatabaseAccessLayer.Models
 {
@@ -14,6 +15,8 @@ namespace DatabaseAccessLayer.Models
         [Required(ErrorMessage = "Please Enter a description.")]
         public DateTime DueDate { get; set; }
 
+        public string UserId { get; set; }
+
         [Required(ErrorMessage = "Please select a Category.")]
         public string CategoryId { get; set; } =  string.Empty;
 
@@ -27,6 +30,9 @@ namespace DatabaseAccessLayer.Models
         public bool Overdew => StatusId == "open" && DueDate < DateTime.Today;
 
         public bool IsActive {  get; set; }
+
+        [ForeignKey("UserId")]
+        public virtual ApplicationUser User { get; set; }
 
     }
 }

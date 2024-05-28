@@ -16,3 +16,154 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 20px;
+}
+
+.nav {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 10px; /* Space between the buttons */
+}
+
+.nav-item {
+    margin: 0;
+}
+
+.nav-link {
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 16px;
+}
+
+.btn {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-orange {
+    background-color: #ff6600; /* Orange color */
+    border: 1px solid #e65c00;
+}
+
+    .btn-orange:hover {
+        background-color: #e65c00; /* Darker orange on hover */
+    }
+
+    .btn-orange:active {
+        background-color: #cc5200; /* Even darker orange on active (clicked) */
+        transform: scale(0.98); /* Slightly shrink the button when active (clicked) */
+    }
+
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 20px;
+}
+
+.nav {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 10px; /* Space between the buttons */
+}
+
+.nav-item {
+    margin: 0;
+}
+
+.nav-link {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 16px;
+}
+
+.box-link {
+    background-color: #ff6600; /* Orange background */
+    color: #fff; /* White text color */
+    padding: 10px 20px; /* Padding inside the box */
+    border: 1px solid #e65c00; /* Border with slightly darker orange */
+    border-radius: 5px; /* Rounded corners */
+}
+
+    .box-link:hover {
+        background-color: #e65c00; /* Darker orange on hover */
+    }
+
+    .box-link:active {
+        background-color: #cc5200; /* Even darker orange on active (clicked) */
+        transform: scale(0.98); /* Slightly shrink the button when active (clicked) */
+    }
+
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 20px;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between; /* Align items to the edges */
+    align-items: center; /* Center items vertically */
+    padding: 10px 20px; /* Padding for spacing */
+    background-color: #fff; /* Background color for the container */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for some depth */
+    position: fixed; /* Fix the container to the top */
+    top: 0; /* Position it at the top */
+    width: 100%; /* Full width */
+    z-index: 1000; /* Ensure it stays on top of other elements */
+}
+
+.nav {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 10px; /* Space between the buttons */
+    margin: 0;
+}
+
+.nav-item {
+    margin: 0;
+}
+
+.nav-link {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 16px;
+}
+
+.box-link {
+    background-color: #ff6600; /* Orange background */
+    color: #fff; /* White text color */
+    padding: 10px 20px; /* Padding inside the box */
+    border: 1px solid #e65c00; /* Border with slightly darker orange */
+    border-radius: 5px; /* Rounded corners */
+}
+
+    .box-link:hover {
+        background-color: #e65c00; /* Darker orange on hover */
+    }
+
+    .box-link:active {
+        background-color: #cc5200; /* Even darker orange on active (clicked) */
+        t

@@ -11,7 +11,7 @@ namespace DatabaseAccessLayer.Data
         {
 
         }
-         //base.OnModelCreating(builder);
+        //base.OnModelCreating(builder);
         public DbSet<MyTask>Task { get; set; }
         public DbSet<Category>Categories { get; set; }
         public DbSet<Status>Statuses { get; set; }
