@@ -16,7 +16,9 @@ namespace ToDoList.Controllers
         #region CTOR
         private readonly ApplicationDbContext _context;
         private readonly IMyTask mytask;
+        #endregion
 
+        #region Fields
         public MyTasksController(ApplicationDbContext context, IMyTask mytask)
         {
             _context = context;

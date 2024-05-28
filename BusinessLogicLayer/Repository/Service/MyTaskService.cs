@@ -62,7 +62,6 @@ namespace BusinessLogicLayer.Repository.Service
         public async Task<bool> UpdateTask(MyTask task)
         {
             task.UserId = _httpContextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier);
-
             try
             {
                 context.Update(task);
@@ -118,8 +117,7 @@ namespace BusinessLogicLayer.Repository.Service
                 datas = datas.Where(x=> x.Category == search).ToList();
             }
             datas = datas.Where(x => x.IsActive == filter).ToList();
-            
-            
+
             return datas;
         }
         #endregion
