@@ -269,3 +269,40 @@ body {
         background-color: #cc5200; /* Even darker orange on active (clicked) */
         transform: scale(0.98); /* Slightly shrink the button when active (clicked) */
     }
+
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 20px;
+}
+
+.task-item {
+    background-color: #fff; /* White background */
+    border: 2px solid #ff6600; /* Orange border */
+    border-radius: 8px; /* Rounded corners */
+    padding: 20px; /* Padding inside the box */
+    margin: 20px 0; /* Margin around the box */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth transition */
+}
+
+    .task-item:hover {
+        transform: translateY(-5px); /* Slight lift on hover */
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Deeper shadow on hover */
+    }
+
+    .task-item p {
+        margin: 0 0 10px; /* Space between paragraphs */
+        font-size: 16px; /* Font size */
+    }
+
+        .task-item p:last-child {
+            margin-bottom: 0; /* Remove margin from the last paragraph */
+        }
+
+    .task-item strong {
+        color: #ff6600; /* Orange color for status text */
+    }
+

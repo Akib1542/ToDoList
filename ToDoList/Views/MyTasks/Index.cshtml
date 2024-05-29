@@ -31,10 +31,27 @@
     <main role="main" class="pb-3">
         @foreach (var task in Model)
         {
-            <div class="task-item">
+           @*  <div class="task-item">
                 <p>@task.Description</p>
-                <p><strong>Status:</strong> @(task.IsActive ? "Active" : "Inactive")</p>
-            </div>
+                <p><strong>Status:</strong> @(task.IsActive ? "Done!" : "Not Done!")</p>
+            </div> *@
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Task Item</title>
+                <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+            </head>
+            <body>
+                <div class="task-item">
+                    <p>@task.Description</p>
+                    <p><strong>Status:</strong> @(task.IsActive ? "Done!" : "Not Done!")</p>
+                </div>
+            </body>
+        </html>
+
         }
     </main> 
   
@@ -73,14 +90,14 @@
                     </h4>
                     <br />
 
-
+@* 
                     <h4 class="my-0 font-weight-normal bg-light">
                         <lable style="font-size:23px; color: steelblue">
                        CatagoryID: @Html.DisplayFor(modelItem => item.CategoryId)
                             
                         </lable>
                     </h4>
-
+ *@
                     <br />
 
 

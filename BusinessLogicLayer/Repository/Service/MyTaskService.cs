@@ -1,25 +1,23 @@
-﻿using Microsoft.EntityFrameworkCore;
-using DatabaseAccessLayer.Data;
-using DatabaseAccessLayer.Models;
+﻿using DatabaseAccessLayer.Models;
 using BusinessLogicLayer.Repository.Interface;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
+using DatabaseAccessLayer.Repos;
 
 namespace BusinessLogicLayer.Repository.Service
 {
     public class MyTaskService : IMyTask
     {
         #region Fields
-        private readonly ApplicationDbContext context;
         private readonly IHttpContextAccessor _httpContextAccessor;
-
+        private readonly MyTaskRepo myTaskRepo;
         #endregion
 
         #region CTOR
-        public MyTaskService(ApplicationDbContext context, IHttpContextAccessor httpContextAccessor)
+        public MyTaskService(IHttpContextAccessor httpContextAccessor, MyTaskRepo myTaskRepo)
         {
-            this.context = context;
             _httpContextAccessor = httpContextAccessor;
+            this.myTaskRepo = myTaskRepo;   
         }
         #endregion
 
@@ -27,9 +25,7 @@ namespace BusinessLogicLayer.Repository.Service
         public async Task<int> AddTask(MyTask task)
         {
               task.UserId = _httpContextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier);
-              context.Add(task);
-              await context.SaveChangesAsync();
-              return task.Id;
+              return await myTaskRepo.AddTask(task);
           
         }
         #endregion
@@ -37,24 +33,14 @@ namespace BusinessLogicLayer.Repository.Service
         #region GetDetails
         public async Task<MyTask> GetDetails(int id)
         {
-            if (id == null || context.Task == null || id==0)
-            {
-                return null;
-            }
-
-            var myTask = await context.Task
-                .Include(m => m.Status)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            return myTask;
+            return await myTaskRepo.GetDetails(id);
         }
         #endregion
 
         #region GetMyTask
         public async Task<IEnumerable<MyTask>> GetMyTask()
         {
-            var data = await context.Task.ToListAsync();
-            data = data.Where(x=> x.UserId == _httpContextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString()).ToList();
-            return data;
+            return await myTaskRepo.GetMyTask();
         }
         #endregion
 
@@ -62,63 +48,21 @@ namespace BusinessLogicLayer.Repository.Service
         public async Task<bool> UpdateTask(MyTask task)
         {
             task.UserId = _httpContextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            try
-            {
-                context.Update(task);
-                await context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!MyTaskExists(task.Id))
-                {
-                    return false;
-                }
-                else
-                {
-                    throw;
-                }
-            }
-            return true;
-        }
-        #endregion
-
-        #region Methods
-        private bool MyTaskExists(int id)
-        {
-            return (context.Task?.Any(e => e.Id == id)).GetValueOrDefault();
+            return await myTaskRepo.UpdateTask(task);
         }
         #endregion
 
         #region DeleteRecord
         public async Task<bool> DeleteRecord(int id=0)
         {
-            bool status = false;
-            if (id != 0)
-            {
-                var data = await context.Task.FindAsync(id);
-                if (data != null)
-                {
-                    context.Task.Remove(data);
-                    await context.SaveChangesAsync();
-                    status = true;
-                }
-            }
-            return status;
+          return await myTaskRepo.DeleteRecord(id);
         }
         #endregion
 
         #region Search & Filter
         public async Task<List<MyTask>> GetCatBySearch(string search, bool filter )
         {
-            var datas = await context.Task.ToListAsync();
-            datas = datas.Where(x => x.UserId == _httpContextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString()).ToList();
-            if (!string.IsNullOrEmpty(search))
-            {
-                datas = datas.Where(x=> x.Category == search).ToList();
-            }
-            datas = datas.Where(x => x.IsActive == filter).ToList();
-
-            return datas;
+           return await myTaskRepo.GetCatBySearch(search, filter);  
         }
         #endregion
     }

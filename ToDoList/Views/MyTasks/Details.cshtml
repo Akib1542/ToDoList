@@ -22,12 +22,12 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.DueDate)
         </dd>
-        <dt class = "col-sm-2">
+       @*  <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.CategoryId)
-        </dt>
-        <dd class = "col-sm-10">
+        </dt> *@
+        @* <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.CategoryId)
-        </dd>
+        </dd> *@
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Category)
         </dt>
@@ -43,7 +43,7 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> 
     <a asp-action="Index" class="btn btn-warning">
         <i class="fas fa-arrow-left"></i> Back to List
     </a>

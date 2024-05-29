@@ -5,6 +5,7 @@ using BusinessLogicLayer.Repository.Service;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using DatabaseAccessLayer.Utility;
+using DatabaseAccessLayer.Repos;
 
 
 namespace ToDoList
@@ -17,6 +18,9 @@ namespace ToDoList
             builder.Services.AddScoped<IMyTask, MyTaskService>();
             builder.Services.AddScoped<IEmailSender, EmailSender>();
             builder.Services.AddScoped<IStatus, StatusService>();
+            builder.Services.AddScoped<StatusRepo>();
+            builder.Services.AddScoped<MyTaskRepo>();
+
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
