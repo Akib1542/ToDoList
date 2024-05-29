@@ -16,6 +16,7 @@ namespace ToDoList
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddScoped<IMyTask, MyTaskService>();
             builder.Services.AddScoped<IEmailSender, EmailSender>();
+            builder.Services.AddScoped<IStatus, StatusService>();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();

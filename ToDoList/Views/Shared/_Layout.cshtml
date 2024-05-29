@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using DatabaseAccessLayer.Utility
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -18,8 +19,31 @@
         <header class="bg-primary text-white text-center">
             <h1 class="m-3 p-3">ToDoList</h1>
         </header>
-     
-   
+        <br />
+
+        @if(User.IsInRole(SD.Role_Admin))
+        {
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Styled Button</title>
+            <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+        </head>
+
+        <body>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link btn btn-status" asp-area="" asp-controller="Status" asp-action="Index">Statuses</a>
+                </li>
+            </ul>
+        </body>
+    </html>
+
+
+   }
 
         <main role="main" class="pb-3">
             @RenderBody()

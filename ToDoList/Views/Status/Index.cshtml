@@ -1,0 +1,33 @@
+﻿@model IEnumerable<DatabaseAccessLayer.Models.Status>
+@{
+    ViewData["Title"] = "Index";
+}
+<p>
+    <a asp-action="Create" class="btn btn-primary" asp-route-id="">Create New</a>
+
+</p>
+
+<div class="container">
+    <div class="row">
+        <div class="col-10 offset-1">
+            <table class="table table-hover table-striped table-bordered">
+                <thead class="text-center bg-dark text-light">
+                    <tr>
+                        <th>Status Name</th>
+                        <th>Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var d in Model)
+                    {
+                        <tr class="text-center">
+                            <td>@d.StatusId</td>
+                            <td>@d.Name</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
