@@ -6,6 +6,7 @@ using DatabaseAccessLayer.Models;
 using BusinessLogicLayer.Repository.Interface;
 using Microsoft.AspNetCore.Authorization;
 using DatabaseAccessLayer.Utility;
+using BusinessLogicLayer.Repository.Service;
 
 namespace ToDoList.Controllers
 {
@@ -14,21 +15,21 @@ namespace ToDoList.Controllers
     {
         #region CTOR
         private readonly ApplicationDbContext _context;
-        private readonly IMyTask mytask;
+        private readonly MyTaskService mytask;
         #endregion
 
         #region Fields
-        public MyTasksController(ApplicationDbContext context, IMyTask mytask)
+        public MyTasksController(ApplicationDbContext context, MyTaskService myTask)
         {
             _context = context;
-            this.mytask = mytask;
+            mytask = myTask;
         }
         #endregion
 
         #region GET: MyTasks
         public async Task<IActionResult> Index(bool isActiveFilter,int pg=1, string search = "")
         {
-            var myTasks = await mytask.GetMyTask();
+            var myTasks = await mytask?.GetMyTask();
             var data = await mytask.GetCatBySearch(search, isActiveFilter);
             const int pageSize = 3;
             if (pg < 1)
@@ -49,6 +50,7 @@ namespace ToDoList.Controllers
         public async Task<IActionResult> Details(int id=0)
         {
             var data = await mytask.GetDetails(id);
+
             return View(data);
         }
         #endregion
@@ -57,6 +59,7 @@ namespace ToDoList.Controllers
         public IActionResult Create()
         {
             ViewData["StatusId"] = new SelectList(_context.Statuses, "StatusId", "StatusId");
+
             return View();
         }
         #endregion
@@ -66,8 +69,8 @@ namespace ToDoList.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create( MyTask myTask)
         {
-        
             var data = await mytask.AddTask(myTask);
+
             return RedirectToAction("Index");
 
         }
@@ -86,6 +89,7 @@ namespace ToDoList.Controllers
                 return NotFound();
             }
             ViewData["StatusId"] = new SelectList(_context.Statuses, "StatusId", "StatusId", myTask.StatusId);
+
             return View(myTask);
         }
         #endregion
@@ -100,6 +104,7 @@ namespace ToDoList.Controllers
                 return NotFound();
             }
             var data = await mytask.UpdateTask(myTask);
+
             return RedirectToAction(nameof(Index));
         }
         #endregion
@@ -119,6 +124,7 @@ namespace ToDoList.Controllers
             {
                 return NotFound();
             }
+
             return View(myTask);
         }
         #endregion

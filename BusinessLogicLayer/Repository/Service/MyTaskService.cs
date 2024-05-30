@@ -1,12 +1,11 @@
 ﻿using DatabaseAccessLayer.Models;
-using BusinessLogicLayer.Repository.Interface;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 using DatabaseAccessLayer.Repos;
 
 namespace BusinessLogicLayer.Repository.Service
 {
-    public class MyTaskService : IMyTask
+    public class MyTaskService 
     {
         #region Fields
         private readonly IHttpContextAccessor _httpContextAccessor;
@@ -22,40 +21,40 @@ namespace BusinessLogicLayer.Repository.Service
         #endregion
 
         #region AddTask
-        public async Task<int> AddTask(MyTask task)
+        public async Task<MyTask> AddTask(MyTask task)
         {
-              task.UserId = _httpContextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier);
-              return await myTaskRepo.AddTask(task);
-          
+             task.UserId = _httpContextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier);
+              
+             return await myTaskRepo.CreateAsync(task);
         }
-        #endregion
+        #endregion 
 
         #region GetDetails
         public async Task<MyTask> GetDetails(int id)
         {
-            return await myTaskRepo.GetDetails(id);
+            return await myTaskRepo.ReadAsync(id);
         }
         #endregion
 
         #region GetMyTask
         public async Task<IEnumerable<MyTask>> GetMyTask()
         {
-            return await myTaskRepo.GetMyTask();
+            return await myTaskRepo.GellAlltaskAsync();
         }
         #endregion
 
         #region UpdateTask
-        public async Task<bool> UpdateTask(MyTask task)
+        public async Task<MyTask> UpdateTask(MyTask task)
         {
             task.UserId = _httpContextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            return await myTaskRepo.UpdateTask(task);
+            return await myTaskRepo.UpdateAsync(task);
         }
         #endregion
 
         #region DeleteRecord
         public async Task<bool> DeleteRecord(int id=0)
         {
-          return await myTaskRepo.DeleteRecord(id);
+          return await myTaskRepo.DeleteAsync(id);
         }
         #endregion
 

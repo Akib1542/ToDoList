@@ -10,22 +10,20 @@ using System.Threading.Tasks;
 
 namespace DatabaseAccessLayer.Repos
 {
-    public class StatusRepo
+    public class StatusRepo : Repository<Status,int>
     {
         #region Fields
         private readonly ApplicationDbContext context;
-        private readonly IHttpContextAccessor _httpContextAccessor;
         #endregion
 
         #region CTOR
-        public StatusRepo(ApplicationDbContext context, IHttpContextAccessor httpContextAccessor)
+        public StatusRepo(ApplicationDbContext context, IHttpContextAccessor httpContextAccessor) : base(context)
         {
             this.context = context;
-            _httpContextAccessor = httpContextAccessor;
         }
         #endregion
 
-        public async Task<string> AddTask(Status statuses)
+      /*  public async Task<string> AddTask(Status statuses)
         {
             context.Add(statuses);
             await context.SaveChangesAsync();
@@ -36,7 +34,7 @@ namespace DatabaseAccessLayer.Repos
         {
             var data = await context.Statuses.ToListAsync();
             return data;
-        }
+        }*/
 
     }
 }

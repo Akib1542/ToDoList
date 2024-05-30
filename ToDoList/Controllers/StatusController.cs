@@ -1,4 +1,5 @@
 ﻿using BusinessLogicLayer.Repository.Interface;
+using BusinessLogicLayer.Repository.Service;
 using DatabaseAccessLayer.Data;
 using DatabaseAccessLayer.Models;
 using DatabaseAccessLayer.Utility;
@@ -14,28 +15,31 @@ namespace ToDoList.Controllers
     {
         #region CTOR
         private readonly ApplicationDbContext _context;
-        private readonly IStatus statuses;
+        private readonly StatusService statusService;
         #endregion
 
         #region Fields
-        public StatusController(ApplicationDbContext context, IStatus statuses)
+        public StatusController(ApplicationDbContext context, StatusService statusservice)
         {
             _context = context;
-            this.statuses = statuses;
+            statusService = statusservice;
         }
         #endregion
 
+        #region GetMyStatus
         public async Task<IActionResult>Index()
         {
-            var data = await statuses.GetMyStatus();
+            var data = await statusService?.GetMyStatus();
+
             return View(data);
         }
-
+        #endregion
 
         #region GET:Create
         public IActionResult Create()
         {
             ViewData["StatusId"] = new SelectList(_context.Statuses, "StatusId", "StatusId");
+
             return View();
         }
         #endregion
@@ -45,11 +49,10 @@ namespace ToDoList.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Status statu)
         {
+            var data = await statusService.AddTask(statu);
 
-            var data = await statuses.AddTask(statu);
             return RedirectToAction("Index");
-
         }
-        #endregion*/
+        #endregion
     }
 }

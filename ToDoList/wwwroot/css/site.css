@@ -306,3 +306,114 @@ body {
         color: #ff6600; /* Orange color for status text */
     }
 
+/* site.css */
+.border-orange {
+    border: 2px solid #ff6600; /* Orange border */
+    border-radius: 8px; /* Rounded corners */
+    padding: 20px; /* Padding inside the container */
+    background-color: #fff; /* White background for contrast */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.btn-status {
+    background-color: #ff6600; /* Custom orange background */
+    border-color: #ff6600; /* Custom orange border */
+    color: #fff; /* White text color */
+}
+
+    .btn-status:hover {
+        background-color: #e65c00; /* Darker orange on hover */
+        border-color: #e65c00; /* Darker orange border on hover */
+    }
+
+    .btn-status:focus,
+    .btn-status:active {
+        background-color: #cc5200; /* Even darker orange on active/click */
+        border-color: #cc5200; /* Even darker orange border on active/click */
+        box-shadow: none; /* Remove default focus shadow */
+    }
+
+/* site.css */
+.btn-blue {
+    background-color: #007bff; /* Bootstrap primary blue color */
+    border-color: #007bff; /* Matching border color */
+    color: #fff; /* White text color */
+}
+
+    .btn-blue:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+        border-color: #0056b3; /* Darker blue border on hover */
+    }
+
+    .btn-blue:focus,
+    .btn-blue:active {
+        background-color: #004085; /* Even darker blue on active/click */
+        border-color: #004085; /* Even darker blue border on active/click */
+        box-shadow: none; /* Remove default focus shadow */
+    }
+
+/* site.css */
+.nav-container {
+    padding: 10px;
+}
+
+.light-green-bg {
+    background-color: #d4edda; /* Light green background */
+    color: #155724; /* Dark green text color */
+    padding: 10px;
+    border-radius: 5px;
+    margin-right: 5px;
+    display: inline-block;
+}
+
+.light-red-bg {
+    background-color: #f8d7da; /* Light red background */
+    border: 1px solid #f5c6cb; /* Light red border */
+    color: #721c24; /* Dark red text color */
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: inline-block;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+    .light-red-bg:hover,
+    .light-red-bg:focus {
+        background-color: #f5c6cb; /* Slightly darker red on hover */
+        border-color: #f1b0b7; /* Slightly darker border on hover */
+        color: #721c24; /* Dark red text color */
+        text-decoration: none; /* Remove underline */
+    }
+/* site.css */
+.nav-container {
+    padding: 10px;
+}
+
+.green-bg {
+    background-color: #28a745; /* Green background */
+    color: #fff; /* White text color */
+    padding: 10px;
+    border-radius: 5px;
+    margin-right: 5px;
+    display: inline-block;
+}
+
+.red-bg {
+    background-color: #dc3545; /* Red background */
+    border: 1px solid #dc3545; /* Red border */
+    color: #fff; /* White text color */
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: inline-block;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+    .red-bg:hover,
+    .red-bg:focus {
+        background-color: #c82333; /* Darker red on hover */
+        border-color: #bd2130; /* Darker red border on hover */
+        color: #fff; /* White text color */
+        text-decoration: none; /* Remove underline */
+    }
+
