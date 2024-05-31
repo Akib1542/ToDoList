@@ -43,9 +43,38 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> 
-    <a asp-action="Index" class="btn btn-warning">
-        <i class="fas fa-arrow-left"></i> Back to List
-    </a>
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Blue Button Example</title>
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    </head>
+    <body>
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-blue">Edit</a>
+
+        </div>
+    </body>
+</html>
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Blue Button Example</title>
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    </head>
+    <body>
+        <div>
+            <br />
+            <a asp-action="Index" class="btn btn-blue">Back to List</a>
+        </div>
+    </body>
+</html>
+
 
 </div>

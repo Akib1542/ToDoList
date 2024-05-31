@@ -11,11 +11,12 @@
     }
 }
 
-<p>
-    <a asp-action="Create" class="btn btn-primary" asp-route-id="">Create New</a>
-</p>
+
 
  <div class="container">
+    <p>
+        <a asp-action="Create" class="btn btn-primary" asp-route-id="">Create New</a>
+    </p>
 
     <div class="box">
     <form >
@@ -62,7 +63,7 @@
     }
 </style>
 
-<div class="row">
+@* <div class="row">
     @foreach (var item in Model)
     {
         <div class="col-4">
@@ -118,9 +119,119 @@
                             <a asp-action="Details" class="btn btn-secondary" asp-route-id="@item.Id">Details</a> 
                             <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">Delete</a>
 
-                           @*  <label style="font-size: 20px; color:#a51313"><b>Price:@product.Price</b> </label> *@
                         </div>
-                        @* <a asp-action="Details" asp-controller="Home" asp-route-id="@product.Id" class="btn btn-success pull-right btn-outline-info">Details</a> *@
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+ *@
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-4">
+            <div class="card mb-4 orange-border">
+                <!-- Add the custom class here -->
+                <div class="card-header">
+                    @* <h4 class="my-0 font-weight-normal bg-light">
+                        <label style="font-size:23px; color: steelblue">
+                            ID: @Html.DisplayFor(modelItem => item.Id)
+                        </label>
+                    </h4>
+                    <br />
+                    *@
+                    <h4 class="my-0 font-weight-normal bg-light">
+                        <label style="font-size:23px; color: steelblue">
+                            My Note: @Html.DisplayFor(modelItem => item.Description)
+                        </label>
+                    </h4>
+                    <br />
+
+                    <h4 class="my-0 font-weight-normal bg-light">
+                        <label style="font-size:23px; color: steelblue">
+                            Category Name: @Html.DisplayFor(modelItem => item.Category)
+                        </label>
+                    </h4>
+                    <br />
+
+                    <h4 class="my-0 font-weight-normal bg-light">
+                        <label style="font-size:23px; color: steelblue">
+                            Date: @Html.DisplayFor(modelItem => item.DueDate)
+                        </label>
+                    </h4>
+
+                    <!DOCTYPE html>
+                    <html lang="en">
+                    <head>
+                        <meta charset="UTF-8">
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                        <title>Overdew Operation</title>
+                        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+                        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+                    </head>
+                    <body>
+                        <div class="container mt-5">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="my-0 font-weight-normal">
+                                       @*  <label class="overdew-label @((item.Overdew ? "red-bg" : "green-bg"))">
+                                            Date: @Html.DisplayFor(modelItem => item.Overdew)
+                                        </label> *@
+                                        <label class="overdew-label @(item.Overdew ? "red-bg" : "green-bg")">
+                                             @(item.Overdew ? "Expired" : "Date is not over")
+                                        </label
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </body>
+                </html>
+
+                    @* <h4 class="my-0 font-weight-normal bg-light">
+                        <label style="font-size:23px; color: steelblue">
+                            Done: @Html.DisplayFor(modelItem => item.IsActive)
+                        </label>
+                    </h4> *@
+
+                    <!DOCTYPE html>
+                    <html lang="en">
+                    <head>
+                        <meta charset="UTF-8">
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                        <title>Overdew Operation</title>
+                        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+                        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+                    </head>
+                    <body>
+                        <div class="container mt-5">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="my-0 font-weight-normal">
+                                       @*  <label class="overdew-label @((item.Overdew ? "red-bg" : "green-bg"))">
+                                            Date: @Html.DisplayFor(modelItem => item.Overdew)
+                                        </label> *@
+                                        <label class="overdew-label @(item.IsActive ? "green-bg" : "red-bg")">
+                                             @(item.IsActive ? "Done" : "Not Done")
+                                        </label
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </body>
+                </html>
+
+
+                </div>
+
+                <div class="card-header">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.Id">Edit</a>
+                            <a asp-action="Details" class="btn btn-secondary" asp-route-id="@item.Id">Details</a>
+                            <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">Delete</a>
+                        </div>
                     </div>
                 </div>
             </div>

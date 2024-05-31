@@ -27,7 +27,7 @@ namespace DatabaseAccessLayer.Models
         public string StatusId { get; set; } = string.Empty;
         [ValidateNever]
         public Status Status { get; set; } = null!;
-        public bool Overdew => StatusId == "open" && DueDate < DateTime.Today;
+        public bool Overdew => DueDate < DateTime.Today;
 
         public bool IsActive {  get; set; }
 

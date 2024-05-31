@@ -417,3 +417,86 @@ body {
         text-decoration: none; /* Remove underline */
     }
 
+/* site.css */
+.orange-border {
+    border: 2px solid orange; /* Orange border */
+    border-radius: 5px; /* Optional: to round the corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: for a subtle shadow effect */
+}
+
+.item-box {
+    background-color: #f9f9f9; /* Light background color to separate items */
+    padding: 15px; /* Padding around the card */
+    margin-bottom: 20px; /* Space between items */
+    border-radius: 10px; /* Rounded corners for the box */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for the box */
+}
+
+/* site.css */
+.btn-blue {
+    background-color: #007bff; /* Blue background color */
+    color: #fff; /* White text color */
+    border: 1px solid #007bff; /* Blue border */
+    padding: 10px 20px; /* Padding for the button */
+    border-radius: 5px; /* Rounded corners */
+    text-align: center; /* Center the text */
+    text-decoration: none; /* Remove underline from links */
+    display: inline-block; /* Inline-block for proper spacing */
+    font-size: 16px; /* Font size */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+    .btn-blue:hover {
+        background-color: #0056b3; /* Darker shade of blue on hover */
+        border-color: #0056b3; /* Change border color on hover */
+        color: #fff; /* Ensure text remains white on hover */
+    }
+/* site.css */
+.form-check-label {
+    font-size: 1.2rem;
+    color: #007bff; /* Primary color */
+}
+
+.form-check-input:checked ~ .form-check-label {
+    text-decoration: line-through;
+    color: #28a745; /* Green color for checked state */
+}
+
+.card {
+    border: 1px solid #007bff; /* Primary border color */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+    padding: 20px;
+}
+
+/* site.css */
+.overdew-label {
+    font-size: 23px;
+    color: white; /* Text color */
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.red-bg {
+    background-color: #dc3545; /* Red background color */
+}
+
+.green-bg {
+    background-color: #28a745; /* Green background color */
+}
+
+.card {
+    border: 1px solid #007bff; /* Primary border color */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+    padding: 20px;
+}
+

@@ -47,13 +47,36 @@
                 <title>Form with Checkbox</title>
                 <link rel="stylesheet" href="styles.css"> <!-- Link your CSS file -->
             </head>
-            <body>
+          @*   <body>
                 <div class="form-group">
                     <label asp-for="IsActive" class="control-label">Mark As Done</label>
                     <input type="checkbox" asp-for="IsActive" class="form-check-input">
                     <span asp-validation-for="IsActive" class="text-danger"></span>
                 </div>
+            </body> *@
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+                <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+            </head>
+            <body>
+                <div class="container mt-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="form-group form-check">
+                                <input type="checkbox" asp-for="IsActive" class="form-check-input" id="isActiveCheckbox">
+                                <label asp-for="IsActive" class="form-check-label" for="isActiveCheckbox">Mark As Done</label>
+                                <span asp-validation-for="IsActive" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </body>
+        </html>
+        <br />
         </html>
 
 
@@ -70,15 +93,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Light Button Example</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link your CSS file -->
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
 <body>
     <div>
-        <a asp-action="Index" class="btn btn-light">Back to List</a>
+        <a asp-action="Index" class="btn btn-blue">Back to List</a>
     </div>
 </body>
 </html>
+
 
 
 @section Scripts {

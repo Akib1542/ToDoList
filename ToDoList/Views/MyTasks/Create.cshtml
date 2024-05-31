@@ -50,15 +50,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Light Button Example</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link your CSS file -->
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
 <body>
     <div>
-        <a asp-action="Index" class="btn btn-light">Back to List</a>
+        <a asp-action="Index" class="btn btn-blue">Back to List</a>
     </div>
 </body>
 </html>
+
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
