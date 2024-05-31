@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using DatabaseAccessLayer.Data;
-using BusinessLogicLayer.Repository.Interface;
 using BusinessLogicLayer.Repository.Service;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;

@@ -1,5 +1,4 @@
-﻿using BusinessLogicLayer.Repository.Interface;
-using BusinessLogicLayer.Repository.Service;
+﻿using BusinessLogicLayer.Repository.Service;
 using DatabaseAccessLayer.Data;
 using DatabaseAccessLayer.Models;
 using DatabaseAccessLayer.Utility;

@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DatabaseAccessLayer.Data;
 using DatabaseAccessLayer.Models;
-using BusinessLogicLayer.Repository.Interface;
 using Microsoft.AspNetCore.Authorization;
 using DatabaseAccessLayer.Utility;
 using BusinessLogicLayer.Repository.Service;
