@@ -33,5 +33,10 @@ namespace BusinessLogicLayer.Repository.Service
             return await statusRepo.GellAlltaskAsync();
         }
         #endregion
+
+        public async Task<IEnumerable<Status>> GetStatusData()
+        {
+            return await statusRepo.getStatusData();
+        }
     }
 }

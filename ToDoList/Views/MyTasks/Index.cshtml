@@ -4,10 +4,16 @@
 
     Pager pager = new Pager();
     int pageNo = 0;
+    bool Filter = false;
     if(ViewBag.Pager != null)
     {
         pager = ViewBag.Pager;
         pageNo = pager.CurrentPage;
+
+    }
+    if(ViewBag.Filter != null)
+    {
+        Filter = ViewBag.Filter;
     }
 }
 
@@ -268,7 +274,7 @@
             @for(var pge = pager.StartPage; pge<=pager.EndPage; pge++)
             {
                 <li class="page-item" @(pge == pager.CurrentPage ? "active" : "")>
-                    <a class="page-link" asp-controller="MyTasks" asp-action="Index" asp-route-pg="@pge">@pge</a>
+                    <a class="page-link" asp-controller="MyTasks" asp-action="Index" asp-route-isActiveFilter="@Filter" asp-route-pg="@pge">@pge</a>
                 </li>
             }
         </ul>

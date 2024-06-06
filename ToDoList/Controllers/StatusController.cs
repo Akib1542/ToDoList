@@ -13,14 +13,12 @@ namespace ToDoList.Controllers
     public class StatusController : Controller
     {
         #region CTOR
-        private readonly ApplicationDbContext _context;
         private readonly StatusService statusService;
         #endregion
 
         #region Fields
         public StatusController(ApplicationDbContext context, StatusService statusservice)
         {
-            _context = context;
             statusService = statusservice;
         }
         #endregion
@@ -35,9 +33,10 @@ namespace ToDoList.Controllers
         #endregion
 
         #region GET:Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            ViewData["StatusId"] = new SelectList(_context.Statuses, "StatusId", "StatusId");
+            var dataa = await statusService.GetStatusData();
+            ViewData["StatusId"] = new SelectList(dataa, "StatusId", "StatusId");
 
             return View();
         }

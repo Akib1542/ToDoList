@@ -1,12 +1,7 @@
 ﻿using DatabaseAccessLayer.Data;
 using DatabaseAccessLayer.Models;
 using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace DatabaseAccessLayer.Repos
 {
@@ -23,7 +18,15 @@ namespace DatabaseAccessLayer.Repos
         }
         #endregion
 
-      /*  public async Task<string> AddTask(Status statuses)
+        #region Methods
+        public async Task< IEnumerable<Status>> getStatusData()
+        {
+            IEnumerable<Status> data =  context.Statuses.ToList();
+            return data;
+        }
+
+
+        /*public async Task<string> AddTask(Status statuses)
         {
             context.Add(statuses);
             await context.SaveChangesAsync();
@@ -35,6 +38,7 @@ namespace DatabaseAccessLayer.Repos
             var data = await context.Statuses.ToListAsync();
             return data;
         }*/
+        #endregion
 
     }
 }

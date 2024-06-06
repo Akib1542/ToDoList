@@ -41,5 +41,31 @@ namespace DatabaseAccessLayer.Repos
         }
         #endregion
 
+        #region Methods
+        public async Task<IEnumerable<MyTask>> GetMyTaskData()
+        {
+            IEnumerable<MyTask> data = context.Task.ToList();
+
+            return data;
+        }
+
+        public async Task<MyTask> GetMyDeleteTask(int? id)
+        {
+
+            var data = await context.Task
+                .Include(m => m.Status)
+                 .FirstOrDefaultAsync(m => m.Id == id);
+
+            return data;
+        }
+
+        public async Task<MyTask>GetMyEditTask(int id)
+        {
+            var data = await context.Task.FindAsync(id);
+
+            return data;
+        }
+        #endregion
+
     }
 }

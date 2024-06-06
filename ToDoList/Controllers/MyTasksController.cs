@@ -13,15 +13,15 @@ namespace ToDoList.Controllers
     public class MyTasksController : Controller
     {
         #region CTOR
-        private readonly ApplicationDbContext _context;
         private readonly MyTaskService mytask;
+        private readonly StatusService statusService;
         #endregion
 
         #region Fields
-        public MyTasksController(ApplicationDbContext context, MyTaskService myTask)
+        public MyTasksController( MyTaskService myTask, StatusService statusservice)
         {
-            _context = context;
             mytask = myTask;
+            statusService = statusservice;
         }
         #endregion
 
@@ -40,6 +40,7 @@ namespace ToDoList.Controllers
             int recSkip = (pg - 1) * pageSize;
             data = data.Skip(recSkip).Take(pager.PageSize).ToList();
             this.ViewBag.Pager = pager;
+            this.ViewBag.Filter = isActiveFilter;
 
             return View(data);
         }
@@ -55,9 +56,10 @@ namespace ToDoList.Controllers
         #endregion
 
         #region GET:Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            ViewData["StatusId"] = new SelectList(_context.Statuses, "StatusId", "StatusId");
+            var StatusData = await statusService.GetStatusData();
+            ViewData["StatusId"] = new SelectList(StatusData, "StatusId", "StatusId");
 
             return View();
         }
@@ -78,16 +80,19 @@ namespace ToDoList.Controllers
         #region GET: Edit
         public async Task<IActionResult> Edit(int id=0)
         {
-            if (id == null || _context.Task == null)
+             var MyTaskData = await statusService.GetStatusData();
+           
+            if (id == null || MyTaskData == null)
             {
                 return NotFound();
             }
-            var myTask = await _context.Task.FindAsync(id);
+            var myTask = await mytask.GetMyEditingTask(id);
             if (myTask == null)
             {
                 return NotFound();
             }
-            ViewData["StatusId"] = new SelectList(_context.Statuses, "StatusId", "StatusId", myTask.StatusId);
+            var StatusData = await statusService.GetStatusData();
+            ViewData["StatusId"] = new SelectList(StatusData, "StatusId", "StatusId", myTask.StatusId);
 
             return View(myTask);
         }
@@ -111,14 +116,13 @@ namespace ToDoList.Controllers
         #region GET:Delete
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Task == null)
+            var MyTaskData = await statusService.GetStatusData();
+            if (id == null || MyTaskData == null)
             {
                 return NotFound();
             }
 
-            var myTask = await _context.Task
-                .Include(m => m.Status)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var myTask = await mytask.GetMyDeletingTask(id);
             if (myTask == null)
             {
                 return NotFound();

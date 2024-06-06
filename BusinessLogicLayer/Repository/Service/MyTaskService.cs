@@ -64,5 +64,23 @@ namespace BusinessLogicLayer.Repository.Service
            return await myTaskRepo.GetCatBySearch(search, filter);  
         }
         #endregion
+
+        #region Methods
+
+        public async Task<IEnumerable<MyTask>> GetMyTaskDatas()
+        {
+            return await myTaskRepo.GetMyTaskData();
+        }
+
+        public async Task<MyTask> GetMyDeletingTask(int? id)
+        {
+            return await myTaskRepo.GetMyDeleteTask(id);
+        }
+
+        public async Task<MyTask>GetMyEditingTask(int id)
+        {
+            return await myTaskRepo.GetMyEditTask(id);
+        }
+        #endregion
     }
 }
