@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using DatabaseAccessLayer.Data;
 using DatabaseAccessLayer.Models;
 using Microsoft.AspNetCore.Authorization;
 using DatabaseAccessLayer.Utility;

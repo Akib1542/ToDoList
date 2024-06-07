@@ -5,6 +5,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using DatabaseAccessLayer.Utility;
 using DatabaseAccessLayer.Repos;
+using ToDoList.Settings;
+using SendGrid.Extensions.DependencyInjection;
+using ToDoList.ServicesGetEmailSender;
+using Microsoft.Extensions.Options;
 
 
 namespace ToDoList
@@ -27,7 +31,11 @@ namespace ToDoList
             builder.Services.AddDbContext<ApplicationDbContext>(options=>options.UseSqlServer(
                 builder.Configuration.GetConnectionString("DefaultConnection")
                 ));
-            builder.Services.AddIdentity<IdentityUser,IdentityRole>()
+            builder.Services.AddIdentity<IdentityUser, IdentityRole>(config =>{
+                config.SignIn.RequireConfirmedEmail = true;
+                config.SignIn.RequireConfirmedAccount = true;
+                config.Tokens.EmailConfirmationTokenProvider = TokenOptions.DefaultEmailProvider;
+            })
                 .AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
             builder.Services.ConfigureApplicationCookie(options =>
             {
@@ -35,9 +43,18 @@ namespace ToDoList
                 options.LogoutPath = "/Identity/Account/Logout";
                 options.AccessDeniedPath = "/Identity/Account/AccessDenied";
             });
+
             builder.Services.AddHttpContextAccessor();
+            builder.Services.Configure<SendGridSettings>(builder.Configuration.GetSection("SendGridSettings"));
 
             builder.Services.AddRazorPages();
+            builder.Services.AddSendGrid(options =>
+            {
+                options.ApiKey = builder.Configuration.GetSection("SendGridSettings").GetValue<string>("ApiKey");
+            });
+
+            builder.Services.AddScoped<IEmailSender,EmailSenderService>();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

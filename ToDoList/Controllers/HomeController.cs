@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using DatabaseAccessLayer.Data;
+using DatabaseAccessLayer.Models;
+using System.Diagnostics;
 
 namespace ToDoList.Controllers
 {
@@ -12,5 +14,11 @@ namespace ToDoList.Controllers
             
         }
         #endregion
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
     }
 }
