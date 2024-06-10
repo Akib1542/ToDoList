@@ -34,5 +34,9 @@ namespace DatabaseAccessLayer.Models
         [ForeignKey("UserId")]
         public virtual ApplicationUser User { get; set; }
 
+        [Required]
+        public int Priority { get; set; }
+
+
     }
 }

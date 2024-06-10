@@ -1,5 +1,4 @@
 ﻿using BusinessLogicLayer.Repository.Service;
-using DatabaseAccessLayer.Data;
 using DatabaseAccessLayer.Models;
 using DatabaseAccessLayer.Utility;
 using Microsoft.AspNetCore.Authorization;
@@ -12,26 +11,33 @@ namespace ToDoList.Controllers
     public class StatusController : Controller
     {
         #region CTOR
+
         private readonly StatusService statusService;
+
         #endregion
 
         #region Fields
-        public StatusController(ApplicationDbContext context, StatusService statusservice)
+
+        public StatusController(StatusService statusService)
         {
-            statusService = statusservice;
+            this.statusService = statusService;
         }
+
         #endregion
 
         #region GetMyStatus
+
         public async Task<IActionResult>Index()
         {
-            var data = await statusService?.GetMyStatus();
+            var data = await statusService.GetMyStatus();
 
             return View(data);
         }
+
         #endregion
 
         #region GET:Create
+
         public async Task<IActionResult> Create()
         {
             var dataa = await statusService.GetStatusData();
@@ -39,9 +45,11 @@ namespace ToDoList.Controllers
 
             return View();
         }
+
         #endregion
 
         #region POST:Create
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Status statu)
@@ -50,6 +58,7 @@ namespace ToDoList.Controllers
 
             return RedirectToAction("Index");
         }
+
         #endregion
     }
 }

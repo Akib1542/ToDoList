@@ -24,9 +24,10 @@ namespace ToDoList.Controllers
         #endregion
 
         #region GET: MyTasks
+
         public async Task<IActionResult> Index(bool isActiveFilter,int pg=1, string search = "")
         {
-            var myTasks = await mytask?.GetMyTask();
+            var myTasks = await mytask.GetMyTask();
             var data = await mytask.GetCatBySearch(search, isActiveFilter);
             const int pageSize = 3;
             if (pg < 1)
@@ -42,6 +43,7 @@ namespace ToDoList.Controllers
 
             return View(data);
         }
+
         #endregion
 
         #region MyTasks Details
@@ -51,6 +53,7 @@ namespace ToDoList.Controllers
 
             return View(data);
         }
+
         #endregion
 
         #region GET:Create

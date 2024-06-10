@@ -500,3 +500,39 @@ body {
     padding: 20px;
 }
 
+.pagination {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px; /* Increased padding */
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 1.25rem; /* Increased font size */
+}
+
+.page-item.active .page-link {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+}
+
+.page-item .page-link {
+    color: #007bff;
+    padding: 10px 15px; /* Increased padding */
+}
+
+    .page-item .page-link:hover {
+        background-color: #e9ecef;
+        color: #0056b3;
+    }
+
+    .page-item .page-link:focus {
+        box-shadow: none;
+    }
+
+.page-item.disabled .page-link {
+    color: #6c757d;
+    pointer-events: none;
+    cursor: not-allowed;
+    background-color: #f8f9fa;
+    border-color: #ddd;
+}

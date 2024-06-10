@@ -1,4 +1,4 @@
-﻿@page
+﻿@* @page
 @model ConfirmEmailModel
 @{
     ViewData["Title"] = "Confirm email";
@@ -6,3 +6,54 @@
 
 <h1>@ViewData["Title"]</h1>
 <partial name="_StatusMessage" model="Model.StatusMessage" />
+ *@
+
+@*  @page
+@model ConfirmEmailModel
+@{
+    ViewData["Title"] = "Confirm email";
+}
+
+<h1>@ViewData["Title"]</h1>
+<partial name="_StatusMessage" model="Model.StatusMessage" />
+
+<p>You will be redirected to the login page in 3 seconds...</p>
+
+@section Scripts {
+    <script>
+        // Redirect to login page after 5 seconds
+        setTimeout(function() {
+            window.location.href = '@Url.Page("/Account/Login", new { area = "Identity" })';
+        }, 3000); // 5000 milliseconds = 5 seconds
+    </script>
+}
+ *@
+
+ @page
+@model ConfirmEmailModel
+@{
+    ViewData["Title"] = "Confirm email";
+}
+
+<h1>@ViewData["Title"]</h1>
+<partial name="_StatusMessage" model="Model.StatusMessage" />
+
+<p>You will be redirected to the login page in <span id="countdown" class="countdown-text">5</span> seconds...</p>
+
+@section Scripts {
+    <script>
+        var countdownElement = document.getElementById('countdown');
+        var countdownValue = 5;
+
+        var countdownInterval = setInterval(function() {
+            countdownValue--;
+            countdownElement.textContent = countdownValue;
+
+            if (countdownValue <= 0) {
+                clearInterval(countdownInterval);
+                window.location.href = '@Url.Page("/Account/Login", new { area = "Identity" })';
+            }
+        }, 1000); // 1000 milliseconds = 1 second
+    </script>
+}
+

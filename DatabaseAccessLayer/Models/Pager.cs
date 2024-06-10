@@ -15,10 +15,14 @@ namespace DatabaseAccessLayer.Models
         public int StartPage { get; private set;}
         public int EndPage { get; private set;}
 
+        #region CTOR
         public Pager()
         {
             
         }
+        #endregion
+
+        #region Pager
         public Pager(int totalItems, int page, int pageSize=0)
         {
             int totalPage = (int)Math.Ceiling( ((decimal)totalItems) / (decimal)pageSize);
@@ -49,5 +53,6 @@ namespace DatabaseAccessLayer.Models
             StartPage = startPage;
             EndPage = endPage;  
         }
+        #endregion
     }
 }

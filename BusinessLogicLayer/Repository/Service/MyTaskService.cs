@@ -61,7 +61,10 @@ namespace BusinessLogicLayer.Repository.Service
         #region Search & Filter
         public async Task<List<MyTask>> GetCatBySearch(string search, bool filter )
         {
-           return await myTaskRepo.GetCatBySearch(search, filter);  
+            var data = await myTaskRepo.GetCatBySearch(search, filter);
+            data = SortPriority(data);
+
+            return data;
         }
         #endregion
 
@@ -80,6 +83,15 @@ namespace BusinessLogicLayer.Repository.Service
         public async Task<MyTask>GetMyEditingTask(int id)
         {
             return await myTaskRepo.GetMyEditTask(id);
+        }
+        #endregion
+
+        #region SortPriority
+        private static List<MyTask> SortPriority(List<MyTask> taskPriority)
+        {
+            taskPriority = taskPriority.OrderByDescending(n => n.Priority).ToList();
+
+            return taskPriority;
         }
         #endregion
     }
