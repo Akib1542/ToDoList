@@ -23,7 +23,15 @@ namespace BusinessLogicLayer.Repository.Service
         #region AddTask
         public async Task<Status> AddTask(Status statuses)
         {
-            return await statusRepo.CreateAsync(statuses);
+            var searchData = await statusRepo.getStatusData();
+            var tmp = searchData.FirstOrDefault(x => x.Name.Equals(statuses.Name));
+            if(tmp != null)
+            {
+                return null;
+            }
+
+            var data = await statusRepo.CreateAsync(statuses); 
+            return data;
         }
         #endregion
 

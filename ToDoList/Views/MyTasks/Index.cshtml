@@ -33,6 +33,7 @@
         <button type="submit" class="btn btn-primary">Filter</button>
     </form>
     </div>
+
     <main role="main" class="pb-3">
         @foreach (var task in Model)
         {
@@ -69,85 +70,14 @@
     }
 </style>
 
-@* <div class="row">
-    @foreach (var item in Model)
-    {
-        <div class="col-4">
-            <div class="card mb-4">
-                <div class="card-header">
-
-                    <h4 class="my-0 font-weight-normal bg-light">
-                        <lable style="font-size:23px; color: steelblue">
-                           ID: @Html.DisplayFor(modelItem => item.Id)
-                        </lable>
-                    </h4>
-                    <br />
-
-
-
-                    <h4 class="my-0 font-weight-normal bg-light">
-                        <lable style="font-size:23px; color: steelblue">
-                       My Note: @Html.DisplayFor(modelItem => item.Description)  
-                        </lable> 
-                    </h4>
-                    <br />
-
-
-                    <h4 class="my-0 font-weight-normal bg-light">
-                        <lable style="font-size:23px; color: steelblue">
-                            Catagory Name: @Html.DisplayFor(modelItem => item.Category)
-                            
-                        </lable>
-                    </h4>
-                    <br />
-
-                    <h4 class="my-0 font-weight-normal bg-light">
-                        <lable style="font-size:23px; color: steelblue">
-                         Date: @Html.DisplayFor(modelItem => item.DueDate)
-
-                        </lable>
-                    </h4>
-                    <br />
-
-
-                    <h4 class="my-0 font-weight-normal bg-light">
-                        <lable style="font-size:23px; color: steelblue">
-                            Done: @Html.DisplayFor(modelItem => item.IsActive)
-
-                        </lable>
-                    </h4>
-                </div>
-
-                <div class="card-header">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                            <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.Id">Edit</a> 
-                            <a asp-action="Details" class="btn btn-secondary" asp-route-id="@item.Id">Details</a> 
-                            <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">Delete</a>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    }
-</div>
- *@
-
-<div class="row">
+@* div class="row">
     @foreach (var item in Model)
     {
         <div class="col-4">
             <div class="card mb-4 orange-border">
                 <!-- Add the custom class here -->
                 <div class="card-header">
-                    @* <h4 class="my-0 font-weight-normal bg-light">
-                        <label style="font-size:23px; color: steelblue">
-                            ID: @Html.DisplayFor(modelItem => item.Id)
-                        </label>
-                    </h4>
-                    <br />
-                    *@
+                   
                     <h4 class="my-0 font-weight-normal bg-light">
                         <label style="font-size:23px; color: steelblue">
                             My Note: @Html.DisplayFor(modelItem => item.Description)
@@ -189,9 +119,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="my-0 font-weight-normal">
-                                       @*  <label class="overdew-label @((item.Overdew ? "red-bg" : "green-bg"))">
-                                            Date: @Html.DisplayFor(modelItem => item.Overdew)
-                                        </label> *@
+                                    
                                         <label class="overdew-label @(item.Overdew ? "red-bg" : "green-bg")">
                                              @(item.Overdew ? "Expired" : "Date is not over")
                                         </label
@@ -202,12 +130,7 @@
                     </body>
                 </html>
 
-                    @* <h4 class="my-0 font-weight-normal bg-light">
-                        <label style="font-size:23px; color: steelblue">
-                            Done: @Html.DisplayFor(modelItem => item.IsActive)
-                        </label>
-                    </h4> *@
-
+                 
                     <!DOCTYPE html>
                     <html lang="en">
                     <head>
@@ -222,9 +145,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="my-0 font-weight-normal">
-                                       @*  <label class="overdew-label @((item.Overdew ? "red-bg" : "green-bg"))">
-                                            Date: @Html.DisplayFor(modelItem => item.Overdew)
-                                        </label> *@
+                                    
                                         <label class="overdew-label @(item.IsActive ? "green-bg" : "red-bg")">
                                              @(item.IsActive ? "Done" : "Not Done")
                                         </label
@@ -250,7 +171,61 @@
             </div>
         </div>
     }
+</div> *@
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-4">
+            <div class="card mb-4 orange-border">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal bg-light">
+                        <label style="font-size:23px; color: steelblue">
+                            My Note: @Html.DisplayFor(modelItem => item.Description)
+                        </label>
+                    </h4>
+                    <br />
+                    <h4 class="my-0 font-weight-normal bg-light">
+                        <label style="font-size:23px; color: steelblue">
+                            Category Name: @Html.DisplayFor(modelItem => item.Category)
+                        </label>
+                    </h4>
+                    <br />
+                    <h4 class="my-0 font-weight-normal bg-light">
+                        <label style="font-size:23px; color: steelblue">
+                            Priority: @Html.DisplayFor(modelItem => item.Priority)
+                        </label>
+                    </h4>
+                    <br />
+                    <h4 class="my-0 font-weight-normal bg-light">
+                        <label style="font-size:23px; color: steelblue">
+                            Date: @Html.DisplayFor(modelItem => item.DueDate)
+                        </label>
+                    </h4>
+                    <br />
+                    <div class="status-container btn-group">
+                        <label class="overdew-label btn text-sm-center  @(item.Overdew ? "red-bg" : "green-bg")">
+                            @(item.Overdew ? "Expired" : "Date is not over")
+                        </label>
+                        <label class="overdew-label btn text-sm-center  @(item.IsActive ? "green-bg" : "red-bg")">
+                            @(item.IsActive ? "Done" : "Not Done")
+                        </label>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.Id">Edit</a>
+                            <a asp-action="Details" class="btn btn-secondary" asp-route-id="@item.Id">Details</a>
+                            <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 </div>
+
 
 
 <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
@@ -273,20 +248,6 @@
     </div>
     </div>
 </nav>
-
-@* <div class="container">
-    @if(pager.TotalPages>0)
-    {
-        <ul class="pagination justify-content-end">
-            @for(var pge = pager.StartPage; pge<=pager.EndPage; pge++)
-            {
-                <li class="page-item" @(pge == pager.CurrentPage ? "active" : "")>
-                    <a class="page-link" asp-controller="MyTasks" asp-action="Index" asp-route-isActiveFilter="@Filter" asp-route-pg="@pge">@pge</a>
-                </li>
-            }
-        </ul>
-    }
-</div> *@
 
 <div class="container mt-5">
     @if(pager.TotalPages > 0)

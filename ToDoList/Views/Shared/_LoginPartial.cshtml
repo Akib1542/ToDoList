@@ -36,14 +36,15 @@
                 <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
             </head>
             <body>
-                <div class="nav-container">
+                <div class="nav-container d-flex">
                     <ul class="nav">
-                        <li class="nav-item">
-                                <a id="manage" class="nav-link box-link green-bg text-white" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+                        <li>
+                                <button id="manage" class="nav-link btn box-link green-bg text-white p-2" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
                                     Hello @UserManager.GetUserName(User)!
-                                </a>
-                                <br />
-                            <button id="logout" type="submit" class="btn btn-logout red-bg text-white">Logout</button>
+                                </button>
+                        </li>
+                        <li>
+                            <button id="logout" type="submit" class="nav-link btn box-link btn-secondary text-white p-2">Logout</button>
                         </li>
                         <!-- Other navigation items can go here -->
                     </ul>
@@ -56,13 +57,7 @@
 }
 else
 {
-    @* <li class="nav-item">
-        <a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
-    </li> *@
-
+   
         <!DOCTYPE html>
         <html lang="en">
         <head>
@@ -98,20 +93,81 @@ else
                 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
                 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
             </head>
-            <body>
+@*             <body>
                 <div class="container mt-3">
                     <div class="col-4">
                         <ul class="nav flex-column">
                             <li class="nav-item">
                                 <a class="nav-link btn btn-blue" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link btn btn-blue" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
-                            </li>
+                          
                         </ul>
                     </div>
                 </div>
-            </body>
+
+                <div class="container mt-3">
+                    <div class="col-4">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link btn btn-blue" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                            </li>
+                         
+                        </ul>
+                    </div>
+                </div>
+
+            </body> *@
+
+            <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register and Login Buttons</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <style>
+        .btn-blue {
+            background-color: #007bff;
+            color: white;
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.25rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-blue:hover {
+            background-color: #0056b3;
+            color: white;
+        }
+            </style>
+        </head>
+        <body>
+            <div class="container mt-3">
+                <div class="col-4">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link btn-blue" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="container mt-3">
+                <div class="col-4">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link btn-blue" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </body>
+        </html>
+
         </html>
 
             </div>

@@ -21,6 +21,7 @@ namespace ToDoList.Controllers
             mytask = myTask;
             statusService = statusservice;
         }
+        //AkibBS-23AkibBS-23
         #endregion
 
         #region GET: MyTasks
@@ -29,7 +30,7 @@ namespace ToDoList.Controllers
         {
             var myTasks = await mytask.GetMyTask();
             var data = await mytask.GetCatBySearch(search, isActiveFilter);
-            const int pageSize = 3;
+            const int pageSize = 5;
             if (pg < 1)
             {
                 pg = 1;

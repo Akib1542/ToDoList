@@ -40,21 +40,25 @@ namespace ToDoList.Controllers
 
         public async Task<IActionResult> Create()
         {
-            var dataa = await statusService.GetStatusData();
-            ViewData["StatusId"] = new SelectList(dataa, "StatusId", "StatusId");
+            var data = await statusService.GetStatusData();
+            ViewData["StatusId"] = new SelectList(data, "StatusId", "StatusId");
 
             return View();
         }
 
         #endregion
 
+
         #region POST:Create
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Status statu)
+        public async Task<IActionResult> Create(Status status)
         {
-            var data = await statusService.AddTask(statu);
+            var data = await statusService.AddTask(status);
+            if(data == null) { 
+                return View("Error");
+            }
 
             return RedirectToAction("Index");
         }
