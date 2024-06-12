@@ -33,7 +33,9 @@ namespace DatabaseAccessLayer.Repos
             datas = datas.Where(x => x.UserId == _httpContextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString()).ToList();
             if (!string.IsNullOrEmpty(search))
             {
-                datas = datas.Where(x => x.Category == search).ToList();
+                search = search.ToLower();
+                datas = datas.Where(x => x.Category.ToLower().Contains(search)).ToList();
+              
             }
             datas = datas.Where(x => x.IsActive == filter).ToList();
 

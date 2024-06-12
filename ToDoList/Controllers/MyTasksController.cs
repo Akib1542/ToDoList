@@ -26,7 +26,7 @@ namespace ToDoList.Controllers
 
         #region GET: MyTasks
 
-        public async Task<IActionResult> Index(bool isActiveFilter,int pg=1, string search = "")
+        public async Task<IActionResult> Index(bool isActiveFilter,int pg=1, string search = "", bool ishide = false)
         {
             var myTasks = await mytask.GetMyTask();
             var data = await mytask.GetCatBySearch(search, isActiveFilter);
@@ -35,13 +35,14 @@ namespace ToDoList.Controllers
             {
                 pg = 1;
             }
+            
             int resCount = data.Count();
             var pager = new Pager(resCount, pg, pageSize);
             int recSkip = (pg - 1) * pageSize;
             data = data.Skip(recSkip).Take(pager.PageSize).ToList();
             this.ViewBag.Pager = pager;
             this.ViewBag.Filter = isActiveFilter;
-
+            this.ViewBag.IsHide = ishide;
             return View(data);
         }
 

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 using DatabaseAccessLayer.Repos;
+using System.Threading.Tasks;
 
 namespace BusinessLogicLayer.Repository.Service
 {
@@ -47,6 +48,7 @@ namespace BusinessLogicLayer.Repository.Service
         public async Task<MyTask> UpdateTask(MyTask task)
         {
             task.UserId = _httpContextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
             return await myTaskRepo.UpdateAsync(task);
         }
         #endregion
@@ -82,7 +84,13 @@ namespace BusinessLogicLayer.Repository.Service
 
         public async Task<MyTask>GetMyEditingTask(int id)
         {
-            return await myTaskRepo.GetMyEditTask(id);
+            var Id = _httpContextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier); 
+            var task = await myTaskRepo.GetMyEditTask(id);
+            if (Id != task.UserId)
+            {
+                return null;
+            }
+            return task;
         }
         #endregion
 

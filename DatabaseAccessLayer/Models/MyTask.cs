@@ -37,6 +37,5 @@ namespace DatabaseAccessLayer.Models
         [Required]
         public int Priority { get; set; }
 
-
     }
 }

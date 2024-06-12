@@ -599,3 +599,59 @@ body {
     justify-content: space-between;
     align-items: center;
 }
+.btn-show {
+    background-color: yellow;
+    color: black;
+    border: 1px solid #ccc;
+}
+
+.btn-hide {
+    background-color: purple;
+    color: white;
+    border: 1px solid #ccc;
+}
+
+.btn-hideRed {
+    background-color: red;
+    color: white;
+    border: 1px solid #ccc;
+}
+
+.btn-hideOrange {
+    background-color: darkorange;
+    color: white;
+    border: 1px solid #ccc;
+}
+
+.box1 {
+    border: 2px solid #ccc;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    background-color: #f9f9f9; /* Light background color */
+}
+
+ .box1 label {
+        display: block;
+        font-size: 23px;
+        color: steelblue;
+ }
+
+.divider {
+    height: 2px;
+    background-color: purple;
+    margin: 10px 0;
+    width: 100%;
+}
+
+.btn-priority {
+    font-size: 23px;
+    color: white; /* Text color */
+    background-color: cadetblue; /* Button background color */
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none; /* Remove underline */
+    display: inline-block;
+    margin: 5px 0;
+}

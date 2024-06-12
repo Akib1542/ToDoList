@@ -5,6 +5,7 @@
     Pager pager = new Pager();
     int pageNo = 0;
     bool Filter = false;
+    bool ishide = false;
     if(ViewBag.Pager != null)
     {
         pager = ViewBag.Pager;
@@ -14,6 +15,10 @@
     if(ViewBag.Filter != null)
     {
         Filter = ViewBag.Filter;
+    }
+    if (ViewBag.IsHide != null)
+    {
+        ishide = ViewBag.IsHide;
     }
 }
 
@@ -49,7 +54,7 @@
             </head>
             <body>
                 <div class="task-item">
-                    <p>@task.Description</p>
+                    <p>Your Note: @task.Description</p>
                     <p><strong>Status:</strong> @(task.IsActive ? "Done!" : "Not Done!")</p>
                 </div>
             </body>
@@ -173,58 +178,126 @@
     }
 </div> *@
 
-<div class="row">
-    @foreach (var item in Model)
+@* <div>
+    @if(!ishide){
+        <a class="btn btn-secondary" asp-action="Index" asp-route-ishide="true" asp-route-isActiveFilter="@Filter" asp-route-pg="@pager.CurrentPage">Show Detailed Task List</a>
+    }
+    else
     {
-        <div class="col-4">
-            <div class="card mb-4 orange-border">
-                <div class="card-header">
-                    <h4 class="my-0 font-weight-normal bg-light">
-                        <label style="font-size:23px; color: steelblue">
-                            My Note: @Html.DisplayFor(modelItem => item.Description)
-                        </label>
-                    </h4>
-                    <br />
-                    <h4 class="my-0 font-weight-normal bg-light">
-                        <label style="font-size:23px; color: steelblue">
-                            Category Name: @Html.DisplayFor(modelItem => item.Category)
-                        </label>
-                    </h4>
-                    <br />
-                    <h4 class="my-0 font-weight-normal bg-light">
-                        <label style="font-size:23px; color: steelblue">
-                            Priority: @Html.DisplayFor(modelItem => item.Priority)
-                        </label>
-                    </h4>
-                    <br />
-                    <h4 class="my-0 font-weight-normal bg-light">
-                        <label style="font-size:23px; color: steelblue">
-                            Date: @Html.DisplayFor(modelItem => item.DueDate)
-                        </label>
-                    </h4>
-                    <br />
-                    <div class="status-container btn-group">
-                        <label class="overdew-label btn text-sm-center  @(item.Overdew ? "red-bg" : "green-bg")">
-                            @(item.Overdew ? "Expired" : "Date is not over")
-                        </label>
-                        <label class="overdew-label btn text-sm-center  @(item.IsActive ? "green-bg" : "red-bg")">
-                            @(item.IsActive ? "Done" : "Not Done")
-                        </label>
+        <a class="btn btn-secondary" asp-action="Index" asp-route-ishide="false" asp-route-isActiveFilter="@Filter" asp-route-pg="@pager.CurrentPage">Hide Detailed Task List</a>
+    }
+
+</div> *@
+
+<div>
+    @if (!ishide)
+    {
+        <a class="btn btn-secondary btn-hide" asp-action="Index" asp-route-ishide="true" asp-route-isActiveFilter="@Filter" asp-route-pg="@pager.CurrentPage">Show Detailed Task List</a>
+    }
+    else
+    {
+        <a class="btn btn-secondary btn-hide" asp-action="Index" asp-route-ishide="false" asp-route-isActiveFilter="@Filter" asp-route-pg="@pager.CurrentPage">Hide Detailed Task List</a>
+    }
+</div>
+
+<br />
+
+@if (ishide)
+{
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-4">
+                <div class="card mb-4 orange-border">
+                    <div class="card-header">
+                        <h4 class="my-0 font-weight-normal bg-light">
+                            <label style="font-size:23px; color: steelblue">
+                                My Note: @Html.DisplayFor(modelItem => item.Description)
+                            </label>
+                        </h4>
+                        <br />
+                       @*  <h4 class="my-0 font-weight-normal bg-light">
+                            <label style="font-size:23px; color: steelblue">
+                                Category Name: @Html.DisplayFor(modelItem => item.Category)
+                            </label>
+                        </h4>
+                        <br />
+                        <h4 class="my-0 font-weight-normal bg-light">
+                            <label style="font-size:23px; color: steelblue">
+                                Priority: @Html.DisplayFor(modelItem => item.Priority)
+                            </label>
+                        </h4> *@
+                        <h4 class="my-0 font-weight-normal bg-light">
+                            <label style="font-size:23px; color: steelblue">
+                                Category Name: @Html.DisplayFor(modelItem => item.Category)
+                            </label>
+                        </h4>
+                        <br />
+                       @*  <h4 class="my-0 font-weight-normal bg-light">
+                            <label style="font-size:23px; color: steelblue">
+                               Priority: @Html.DisplayFor(modelItem => item.Priority)
+                            </label>
+                        </h4>
+                        <br />
+                        <h4 class="my-0 font-weight-normal bg-light">
+                            <label style="font-size:23px; color: steelblue">
+                                Days Remaining: @Html.DisplayFor(modelItem => (item.DueDate - DateTime.Today).Days )
+                            </label>
+                        </h4> *@
+                        
+                        <div class="status-container btn-group">
+                            @if ((item.DueDate - DateTime.Today).Days<5)
+                            {
+                                if ((item.DueDate - DateTime.Today).Days < 0)
+                                { 
+                                <label class="overdew-label btn text-sm-center btn-hideRed">
+                                        @("No Days Remaining")
+                                 </label>
+                                }
+                                else
+                                {
+                                    <label class="overdew-label btn text-sm-center btn-hideOrange">
+                                        Days Remaining: @Html.DisplayFor(modelItem => (item.DueDate - DateTime.Today).Days)
+                                    </label>
+                                }
+                            }
+                            else
+                            {
+                                <label class="overdew-label btn text-sm-center btn-hide">
+                                    Days Remaining: @Html.DisplayFor(modelItem => (item.DueDate - DateTime.Today).Days)
+                                </label>
+                            }
+
+                            <label class="overdew-label btn text-sm-center btn-hide">
+                                Priority: @Html.DisplayFor(modelItem => item.Priority)
+                            </label>
+                        </div>
+
+                        <br />
+                        <div class="status-container btn-group">
+                            <label class="overdew-label btn text-sm-center  @(item.Overdew ? "red-bg" : "green-bg")">
+                                @(item.Overdew ? "Expired" : "Date is not over")
+                            </label>
+                            <label class="overdew-label btn text-sm-center  @(item.IsActive ? "green-bg" : "red-bg")">
+                                @(item.IsActive ? "Done" : "Not Done")
+                            </label>
+                        </div>
                     </div>
-                </div>
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                            <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.Id">Edit</a>
-                            <a asp-action="Details" class="btn btn-secondary" asp-route-id="@item.Id">Details</a>
-                            <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">Delete</a>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.Id">Edit</a>
+                                <a asp-action="Details" class="btn btn-secondary btn-hide" asp-route-id="@item.Id">Details</a>
+                                <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">Delete</a>
+
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    }
-</div>
+        }
+    </div>
+}
 
 
 

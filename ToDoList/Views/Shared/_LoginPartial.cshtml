@@ -6,7 +6,7 @@
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
-        <!DOCTYPE html>
+       @*  <!DOCTYPE html>
         <html lang="en">
         <head>
             <meta charset="UTF-8">
@@ -14,7 +14,7 @@
             <title>Navigation Button</title>
             <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 
-        </head>
+        </head> *@
        @*  <body>
             <ul class="nav">
                 <li class="nav-item">
@@ -24,10 +24,10 @@
                 </li>
             </ul>
         </body> *@
-    </html>
+   @*  </html> *@
     <li class="nav-item">
             <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "MyTasks", new { area = "" })">
-            <!DOCTYPE html>
+            @* <!DOCTYPE html>
             <html lang="en">
             <head>
                 <meta charset="UTF-8">
@@ -35,7 +35,7 @@
                 <title>Navigation Button</title>
                 <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
             </head>
-            <body>
+            <body> *@
                 <div class="nav-container d-flex">
                     <ul class="nav">
                         <li>
@@ -49,8 +49,8 @@
                         <!-- Other navigation items can go here -->
                     </ul>
                 </div>
-            </body>
-        </html>
+           @*  </body> *@
+        @* </html> *@
 
         </form>
     </li>
@@ -58,7 +58,7 @@
 else
 {
    
-        <!DOCTYPE html>
+        @* <!DOCTYPE html>
         <html lang="en">
         <head>
             <meta charset="UTF-8">
@@ -67,7 +67,7 @@ else
             <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
             <!-- Link your CSS file -->
         </head>
-        <body>
+        <body> *@
             <div class="row">
                 <div class="col-10">
 
@@ -83,7 +83,7 @@ else
                     </ul>
 
                 </div> *@
-            <!DOCTYPE html>
+            @* <!DOCTYPE html>
             <html lang="en">
             <head>
                 <meta charset="UTF-8">
@@ -92,7 +92,7 @@ else
                 <!-- Link to Bootstrap CSS -->
                 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
                 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-            </head>
+            </head> *@
 @*             <body>
                 <div class="container mt-3">
                     <div class="col-4">
@@ -118,15 +118,15 @@ else
 
             </body> *@
 
-            <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register and Login Buttons</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <style>
+            @* <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Register and Login Buttons</title>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+            <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+            <style>
         .btn-blue {
             background-color: #007bff;
             color: white;
@@ -144,8 +144,8 @@ else
             color: white;
         }
             </style>
-        </head>
-        <body>
+        </head> *@
+        @* <body> *@
             <div class="container mt-3">
                 <div class="col-4">
                     <ul class="nav flex-column">
@@ -165,15 +165,15 @@ else
                     </ul>
                 </div>
             </div>
-        </body>
-        </html>
+        @* </body> *@
+        @* </html> *@
 
-        </html>
+        @* </html> *@
 
             </div>
-        </body>
+        @* </body> *@
 
-    </html>
+   @*  </html> *@
 
 
 }
