@@ -36,7 +36,7 @@
                 <div>
                     <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
                 </div>
-                <div>
+               @*  <div>
                     <p>
                          <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a> 
                     </p>
@@ -44,7 +44,48 @@
                         <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
                     </p>
                   
-                </div>
+                </div> *@
+                @* <div class="status-container btn-group">
+                    <label class="overdew-label btn text-sm-center ">
+                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                    </label>
+                    <label class="overdew-label btn text-sm-center ">
+                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                    </label>
+                </div> *@
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Button Example</title>
+                    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+                    <style>
+                        .status-container {
+                            display: flex;
+                            justify-content: space-between;
+                            gap: 10px; /* Space between buttons */
+                        }
+
+                            .status-container .btn {
+                                width: 100%; /* Ensures buttons take full width of their container */
+                            }
+                    </style>
+                </head>
+                <body>
+                    <div class="container mt-3">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="status-container">
+                                    <a id="forgot-password" class="btn btn-primary" asp-page="./ForgotPassword">Forgot your password?</a>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="status-container">
+                                    <a class="btn btn-primary" asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </body>
             </form>
         </section>
     </div>

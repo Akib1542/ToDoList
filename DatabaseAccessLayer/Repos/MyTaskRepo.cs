@@ -1,17 +1,14 @@
 ﻿using DatabaseAccessLayer.Data;
+using DatabaseAccessLayer.Interface;
 using DatabaseAccessLayer.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
-using System.Text;
 
 
 namespace DatabaseAccessLayer.Repos
 {
-    public class MyTaskRepo : Repository<MyTask, int>
+    public class MyTaskRepo : Repository<MyTask, int> , IMyTaskRepo
     {
         #region Fields
         private readonly ApplicationDbContext context;

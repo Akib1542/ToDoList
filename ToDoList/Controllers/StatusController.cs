@@ -1,4 +1,4 @@
-﻿using BusinessLogicLayer.Repository.Service;
+﻿using BusinessLogicLayer.Repository.Interfaces;
 using DatabaseAccessLayer.Models;
 using DatabaseAccessLayer.Utility;
 using Microsoft.AspNetCore.Authorization;
@@ -12,13 +12,13 @@ namespace ToDoList.Controllers
     {
         #region CTOR
 
-        private readonly StatusService statusService;
+        private readonly IStatusService statusService;
 
         #endregion
 
         #region Fields
 
-        public StatusController(StatusService statusService)
+        public StatusController(IStatusService statusService)
         {
             this.statusService = statusService;
         }
@@ -42,12 +42,18 @@ namespace ToDoList.Controllers
         {
             var data = await statusService.GetStatusData();
             ViewData["StatusId"] = new SelectList(data, "StatusId", "StatusId");
-
+            if(data==null)
+            {
+                this.ViewBag.isError = "Status already Exist";
+            }
+            else
+            {
+                this.ViewBag.isError = "Ok";
+            }
             return View();
         }
 
         #endregion
-
 
         #region POST:Create
 
@@ -56,8 +62,14 @@ namespace ToDoList.Controllers
         public async Task<IActionResult> Create(Status status)
         {
             var data = await statusService.AddTask(status);
-            if(data == null) { 
-                return View("Error");
+            if (data == null)
+            {
+                this.ViewBag.isError = "Status already Exist";
+                return View();
+            }
+            else
+            {
+                this.ViewBag.isError = "Ok";
             }
 
             return RedirectToAction("Index");

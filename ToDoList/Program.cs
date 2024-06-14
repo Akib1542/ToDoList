@@ -8,7 +8,8 @@ using DatabaseAccessLayer.Repos;
 using ToDoList.Settings;
 using SendGrid.Extensions.DependencyInjection;
 using ToDoList.ServicesGetEmailSender;
-using Microsoft.Extensions.Options;
+using BusinessLogicLayer.Repository.Interfaces;
+using DatabaseAccessLayer.Interface;
 
 
 namespace ToDoList
@@ -18,11 +19,11 @@ namespace ToDoList
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            builder.Services.AddScoped<MyTaskService>();
+            builder.Services.AddScoped<IMyTaskService,MyTaskService>();
             builder.Services.AddScoped<IEmailSender, EmailSender>();
-            builder.Services.AddScoped<StatusService>();
-            builder.Services.AddScoped<StatusRepo>();
-            builder.Services.AddScoped<MyTaskRepo>();
+            builder.Services.AddScoped<IStatusService,StatusService>();
+            builder.Services.AddScoped<IStatusRepo,StatusRepo>();
+            builder.Services.AddScoped<IMyTaskRepo,MyTaskRepo>();
 
 
             // Add services to the container.

@@ -2,14 +2,27 @@
 
 @{
     ViewData["Title"] = "Create";
+    var isError =  "";
+    if (ViewBag.isError != "Ok")
+    {
+        isError = ViewBag.isError;
+
+    }
+
 }
 
 <h1>Create</h1>
 
-<h4>MyTask</h4>
+<h4>My Status</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
+        <div>
+            @if(isError != "")
+            {
+                <span class="text text-bg-danger">@isError</span>
+            }
+        </div>
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -33,21 +46,15 @@
 </div>
 <br />
 
-<!DOCTYPE html>
-<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Light Button Example</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link your CSS file -->
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
-<body>
-    <div>
-        <a asp-action="Index" class="btn btn-light">Back to List</a>
-    </div>
-</body>
-</html>
-
+<div>
+    <a asp-action="Index" class="btn btn-blue">Back to List</a>
+</div>
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");

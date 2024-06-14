@@ -6,36 +6,10 @@
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
-       @*  <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Navigation Button</title>
-            <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-
-        </head> *@
-       @*  <body>
-            <ul class="nav">
-                <li class="nav-item">
-                    <a id="manage" class="nav-link box-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
-                        Hello @UserManager.GetUserName(User)!
-                    </a>
-                </li>
-            </ul>
-        </body> *@
-   @*  </html> *@
+   
     <li class="nav-item">
             <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "MyTasks", new { area = "" })">
-            @* <!DOCTYPE html>
-            <html lang="en">
-            <head>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Navigation Button</title>
-                <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
-            </head>
-            <body> *@
+          
                 <div class="nav-container d-flex">
                     <ul class="nav">
                         <li>
@@ -57,95 +31,12 @@
 }
 else
 {
-   
-        @* <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Navigation Buttons</title>
-            <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-            <!-- Link your CSS file -->
-        </head>
-        <body> *@
+ 
             <div class="row">
                 <div class="col-10">
 
                 </div>
-               @*  <div class="col-2">
-                    <ul class="nav">
-                        <li class="nav-item">
-                            <a class="nav-link btn btn-orange" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link btn btn-orange" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
-                        </li>
-                    </ul>
-
-                </div> *@
-            @* <!DOCTYPE html>
-            <html lang="en">
-            <head>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=2.0">
-                <title>Styled Buttons</title>
-                <!-- Link to Bootstrap CSS -->
-                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-                <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-            </head> *@
-@*             <body>
-                <div class="container mt-3">
-                    <div class="col-4">
-                        <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link btn btn-blue" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
-                            </li>
-                          
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="container mt-3">
-                    <div class="col-4">
-                        <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link btn btn-blue" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
-                            </li>
-                         
-                        </ul>
-                    </div>
-                </div>
-
-            </body> *@
-
-            @* <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Register and Login Buttons</title>
-            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-            <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-            <style>
-        .btn-blue {
-            background-color: #007bff;
-            color: white;
-            width: 100%;
-            padding: 10px;
-            text-align: center;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.25rem;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn-blue:hover {
-            background-color: #0056b3;
-            color: white;
-        }
-            </style>
-        </head> *@
-        @* <body> *@
+     
             <div class="container mt-3">
                 <div class="col-4">
                     <ul class="nav flex-column">
@@ -165,16 +56,8 @@ else
                     </ul>
                 </div>
             </div>
-        @* </body> *@
-        @* </html> *@
-
-        @* </html> *@
-
+   
             </div>
-        @* </body> *@
-
-   @*  </html> *@
-
 
 }
 </ul>

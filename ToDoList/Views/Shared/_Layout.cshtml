@@ -35,11 +35,14 @@
 
             @if (User.IsInRole(SD.Role_Admin))
             {
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-status" asp-area="" asp-controller="Status" asp-action="Index">Statuses</a>
-                    </li>
-                </ul>
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+            </head>
+            <div>
+                <a class="nav-link btn btn-blue" asp-area="" asp-controller="Status" asp-action="Index">Statuses</a>
+            </div>
             }
 
             <main role="main" class="pb-3">

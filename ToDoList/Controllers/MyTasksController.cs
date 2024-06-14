@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using DatabaseAccessLayer.Models;
 using Microsoft.AspNetCore.Authorization;
 using DatabaseAccessLayer.Utility;
-using BusinessLogicLayer.Repository.Service;
+using BusinessLogicLayer.Repository.Interfaces;
 
 namespace ToDoList.Controllers
 {
@@ -11,17 +11,20 @@ namespace ToDoList.Controllers
     public class MyTasksController : Controller
     {
         #region CTOR
-        private readonly MyTaskService mytask;
-        private readonly StatusService statusService;
+
+        private readonly IMyTaskService mytask;
+        private readonly IStatusService statusService;
+
         #endregion
 
         #region Fields
-        public MyTasksController( MyTaskService myTask, StatusService statusservice)
+
+        public MyTasksController( IMyTaskService myTask, IStatusService statusservice)
         {
-            mytask = myTask;
-            statusService = statusservice;
+            this.mytask = myTask;
+            this.statusService = statusservice;
         }
-        //AkibBS-23AkibBS-23
+
         #endregion
 
         #region GET: MyTasks
@@ -49,6 +52,7 @@ namespace ToDoList.Controllers
         #endregion
 
         #region MyTasks Details
+
         public async Task<IActionResult> Details(int id=0)
         {
             var data = await mytask.GetDetails(id);
@@ -59,6 +63,7 @@ namespace ToDoList.Controllers
         #endregion
 
         #region GET:Create
+
         public async Task<IActionResult> Create()
         {
             var StatusData = await statusService.GetStatusData();
@@ -66,21 +71,25 @@ namespace ToDoList.Controllers
 
             return View();
         }
+
         #endregion
 
         #region POST:Create
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create( MyTask myTask)
+        public async Task<IActionResult> Create(MyTask myTask)
         {
             var data = await mytask.AddTask(myTask);
 
             return RedirectToAction("Index");
 
         }
+
         #endregion
 
         #region GET: Edit
+
         public async Task<IActionResult> Edit(int id=0)
         {
              var MyTaskData = await statusService.GetStatusData();
@@ -99,9 +108,11 @@ namespace ToDoList.Controllers
 
             return View(myTask);
         }
+
         #endregion
 
         #region POST:Edit
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, MyTask myTask)
@@ -114,9 +125,11 @@ namespace ToDoList.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
         #endregion
 
         #region GET:Delete
+
         public async Task<IActionResult> Delete(int? id)
         {
             var MyTaskData = await statusService.GetStatusData();
@@ -133,9 +146,11 @@ namespace ToDoList.Controllers
 
             return View(myTask);
         }
+
         #endregion
 
         #region POST:Delete
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -166,6 +181,7 @@ namespace ToDoList.Controllers
 
             return RedirectToAction("Index");
         }
+
         #endregion
 
     }

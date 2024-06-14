@@ -1,11 +1,12 @@
 ﻿using DatabaseAccessLayer.Data;
+using DatabaseAccessLayer.Interface;
 using DatabaseAccessLayer.Models;
 using Microsoft.AspNetCore.Http;
 
 
 namespace DatabaseAccessLayer.Repos
 {
-    public class StatusRepo : Repository<Status,int>
+    public class StatusRepo : Repository<Status,int> , IStatusRepo
     {
         #region Fields
         private readonly ApplicationDbContext context;
@@ -19,7 +20,7 @@ namespace DatabaseAccessLayer.Repos
         #endregion
 
         #region Methods
-        public async Task< IEnumerable<Status>> getStatusData()
+        public async Task< IEnumerable<Status>> GetStatusData()
         {
             IEnumerable<Status> data =  context.Statuses.ToList();
             return data;
